@@ -27,6 +27,12 @@ import EOCreateEventPage from './pages/eo/EOCreateEventPage';
 import EOReportsPage from './pages/eo/EOReportsPage';
 import EOStaffPage from './pages/eo/EOStaffPage';
 
+// Admin Pages
+import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import AdminEOApprovalsPage from './pages/admin/AdminEOApprovalsPage';
+import AdminEventApprovalsPage from './pages/admin/AdminEventApprovalsPage';
+import AdminTransactionsPage from './pages/admin/AdminTransactionsPage';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -55,6 +61,14 @@ export default function App() {
               <Route path="events/new" element={<EOCreateEventPage />} />
               <Route path="reports" element={<EOReportsPage />} />
               <Route path="staff" element={<EOStaffPage />} />
+            </Route>
+
+            {/* Admin Platform Protected Routes */}
+            <Route path="/admin" element={<DashboardLayout requiredRole="admin" />}>
+              <Route path="dashboard" element={<AdminDashboardPage />} />
+              <Route path="eo-approvals" element={<AdminEOApprovalsPage />} />
+              <Route path="event-approvals" element={<AdminEventApprovalsPage />} />
+              <Route path="transactions" element={<AdminTransactionsPage />} />
             </Route>
 
             {/* Fallback */}
