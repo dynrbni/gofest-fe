@@ -12,6 +12,8 @@ import ExplorePage from './pages/public/ExplorePage';
 import EventDetailPage from './pages/public/EventDetailPage';
 import AboutPage from './pages/public/AboutPage';
 import ContactPage from './pages/public/ContactPage';
+import CheckoutPage from './pages/public/CheckoutPage';
+import TicketSuccessPage from './pages/public/TicketSuccessPage';
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
               <Route path="/event/:id" element={<EventDetailPage />} />
               <Route path="/tentang" element={<AboutPage />} />
               <Route path="/kontak" element={<ContactPage />} />
+              <Route path="/checkout/:eventId" element={<CheckoutPage />} />
+              <Route path="/tiket-berhasil/:orderId" element={<TicketSuccessPage />} />
             </Route>
 
             {/* Fallback */}
