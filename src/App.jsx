@@ -5,6 +5,7 @@ import { ToastProvider } from './context/ToastContext';
 
 // Layouts
 import PublicLayout from './layouts/PublicLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 
 // Public Pages
 import HomePage from './pages/public/HomePage';
@@ -18,6 +19,13 @@ import TicketSuccessPage from './pages/public/TicketSuccessPage';
 // Auth Pages
 import LoginPage from './pages/auth/LoginPage';
 import RegisterEOPage from './pages/auth/RegisterEOPage';
+
+// EO Pages
+import EODashboardPage from './pages/eo/EODashboardPage';
+import EOEventsPage from './pages/eo/EOEventsPage';
+import EOCreateEventPage from './pages/eo/EOCreateEventPage';
+import EOReportsPage from './pages/eo/EOReportsPage';
+import EOStaffPage from './pages/eo/EOStaffPage';
 
 export default function App() {
   return (
@@ -39,6 +47,15 @@ export default function App() {
             {/* Auth Routes */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/eo/register" element={<RegisterEOPage />} />
+
+            {/* Event Organizer (EO) Protected Routes */}
+            <Route path="/eo" element={<DashboardLayout requiredRole="eo" />}>
+              <Route path="dashboard" element={<EODashboardPage />} />
+              <Route path="events" element={<EOEventsPage />} />
+              <Route path="events/new" element={<EOCreateEventPage />} />
+              <Route path="reports" element={<EOReportsPage />} />
+              <Route path="staff" element={<EOStaffPage />} />
+            </Route>
 
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
