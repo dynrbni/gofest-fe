@@ -33,6 +33,10 @@ import AdminEOApprovalsPage from './pages/admin/AdminEOApprovalsPage';
 import AdminEventApprovalsPage from './pages/admin/AdminEventApprovalsPage';
 import AdminTransactionsPage from './pages/admin/AdminTransactionsPage';
 
+// Staff Pages
+import StaffScannerPage from './pages/staff/StaffScannerPage';
+import StaffEventsPage from './pages/staff/StaffEventsPage';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -69,6 +73,12 @@ export default function App() {
               <Route path="eo-approvals" element={<AdminEOApprovalsPage />} />
               <Route path="event-approvals" element={<AdminEventApprovalsPage />} />
               <Route path="transactions" element={<AdminTransactionsPage />} />
+            </Route>
+
+            {/* Staff Verifikator Protected Routes */}
+            <Route path="/staff" element={<DashboardLayout requiredRole="staff" />}>
+              <Route path="scanner" element={<StaffScannerPage />} />
+              <Route path="events" element={<StaffEventsPage />} />
             </Route>
 
             {/* Fallback */}
