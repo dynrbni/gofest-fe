@@ -15,6 +15,10 @@ import ContactPage from './pages/public/ContactPage';
 import CheckoutPage from './pages/public/CheckoutPage';
 import TicketSuccessPage from './pages/public/TicketSuccessPage';
 
+// Auth Pages
+import LoginPage from './pages/auth/LoginPage';
+import RegisterEOPage from './pages/auth/RegisterEOPage';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -31,6 +35,10 @@ export default function App() {
               <Route path="/checkout/:eventId" element={<CheckoutPage />} />
               <Route path="/tiket-berhasil/:orderId" element={<TicketSuccessPage />} />
             </Route>
+
+            {/* Auth Routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/eo/register" element={<RegisterEOPage />} />
 
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
