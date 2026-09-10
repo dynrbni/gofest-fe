@@ -539,6 +539,36 @@ export const StorageService = {
     return newOrder;
   },
 
+  // Resolve the full ticket list of an order. Newly created orders embed
+  // `tickets`, while seeded/legacy orders only carry `ticketCodes`.
+  getOrderTickets(order) {
+    if (!order) return [];
+    if (order.tickets?.length) return order.tickets;
+
+    const allTickets = this.getTickets();
+    const firstItem = order.items?.[0];
+
+    return (order.ticketCodes || []).map((code) => {
+      const found = allTickets.find((t) => t.ticketCode === code);
+      return {
+        id: `tixref-${code}`,
+        ticketCode: code,
+        orderNumber: order.orderNumber,
+        eventId: order.eventId,
+        eventTitle: order.eventTitle,
+        eventLocation: order.eventLocation,
+        eventDate: order.eventDate,
+        ticketTypeName: found?.ticketTypeName || firstItem?.ticketName || 'Tiket',
+        buyerName: order.buyerName,
+        price: found?.price ?? firstItem?.price ?? 0,
+        status: found?.status || 'unused',
+        usedAt: found?.usedAt || null,
+        usedByStaffName: found?.usedByStaffName || null,
+        createdAt: found?.createdAt || order.createdAt,
+      };
+    });
+  },
+
   // TICKETS & QR CHECK-IN
   getTickets() {
     return getFromStorage(STORAGE_KEYS.TICKETS, INITIAL_TICKETS);

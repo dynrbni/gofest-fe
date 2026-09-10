@@ -45,7 +45,7 @@ export default function RegisterEOPage() {
   const handleDemoAdminApproval = () => {
     // Quick switch to admin to approve this EO
     quickSwitch('admin');
-    navigate('/admin/approvals');
+    navigate('/admin/eo-approvals');
   };
 
   return (

@@ -20,6 +20,11 @@ export default function TicketSuccessPage() {
     return orders.find(o => o.id === orderId);
   }, [orderId]);
 
+  const tickets = useMemo(
+    () => (order ? StorageService.getOrderTickets(order) : []),
+    [order]
+  );
+
   // Trigger celebration confetti on mount
   useEffect(() => {
     try {
@@ -111,12 +116,12 @@ export default function TicketSuccessPage() {
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
             <Ticket className="w-5 h-5 text-slate-700" />
-            <span>E-Ticket Digital ({order.tickets?.length || 1} Tiket)</span>
+            <span>E-Ticket Digital ({tickets.length} Tiket)</span>
           </h2>
           <span className="text-xs text-slate-500">Tunjukkan QR code ini di pintu masuk (gate)</span>
         </div>
 
-        {order.tickets?.map((tix, idx) => (
+        {tickets.map((tix, idx) => (
           <div
             key={tix.id || idx}
             className="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-12 relative print:border-2 print:border-black"

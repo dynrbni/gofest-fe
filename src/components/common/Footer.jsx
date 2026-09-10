@@ -77,6 +77,7 @@ export default function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-slate-900 mb-4">Untuk Penyelenggara</h4>
           <ul className="space-y-2.5 text-sm">
+            <li><Link to="/penyelenggara" className="text-slate-500 hover:text-slate-900 transition">Daftar Penyelenggara</Link></li>
             <li><Link to="/eo/register" className="text-slate-500 hover:text-slate-900 transition">Daftar Jadi Partner EO</Link></li>
             <li><Link to="/login" className="text-slate-500 hover:text-slate-900 transition">Masuk ke Portal EO</Link></li>
             <li><Link to="/tentang#fee" className="text-slate-500 hover:text-slate-900 transition">Struktur Biaya & Komisi</Link></li>
@@ -100,6 +101,8 @@ export default function Footer() {
               <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
               <span>Senayan Park Level 3, Jakarta Pusat</span>
             </li>
+            <li><Link to="/cek-pesanan" className="text-slate-500 hover:text-slate-900 transition">Cek Status Pesanan</Link></li>
+            <li><Link to="/faq" className="text-slate-500 hover:text-slate-900 transition">FAQ</Link></li>
           </ul>
         </div>
       </div>
@@ -111,9 +114,8 @@ export default function Footer() {
             © {new Date().getFullYear()} <span className="font-medium text-slate-500">GoFest Indonesia</span>
           </div>
           <div className="flex gap-5">
-            <a href="#terms" className="hover:text-slate-600 transition">Syarat & Ketentuan</a>
-            <a href="#privacy" className="hover:text-slate-600 transition">Privasi</a>
-            <a href="#faq" className="hover:text-slate-600 transition">FAQ</a>
+            <Link to="/syarat-ketentuan" className="hover:text-slate-600 transition">Syarat & Ketentuan</Link>
+            <Link to="/kebijakan-privasi" className="hover:text-slate-600 transition">Privasi</Link>
           </div>
         </div>
       </div>

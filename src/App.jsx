@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 
@@ -15,6 +15,12 @@ import AboutPage from './pages/public/AboutPage';
 import ContactPage from './pages/public/ContactPage';
 import CheckoutPage from './pages/public/CheckoutPage';
 import TicketSuccessPage from './pages/public/TicketSuccessPage';
+import OrganizersPage from './pages/public/OrganizersPage';
+import OrderLookupPage from './pages/public/OrderLookupPage';
+import FaqPage from './pages/public/FaqPage';
+import TermsPage from './pages/public/TermsPage';
+import PrivacyPage from './pages/public/PrivacyPage';
+import NotFoundPage from './pages/public/NotFoundPage';
 
 // Auth Pages
 import LoginPage from './pages/auth/LoginPage';
@@ -37,9 +43,21 @@ import AdminTransactionsPage from './pages/admin/AdminTransactionsPage';
 import StaffScannerPage from './pages/staff/StaffScannerPage';
 import StaffEventsPage from './pages/staff/StaffEventsPage';
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) return;
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <ToastProvider>
           <Routes>
@@ -48,10 +66,16 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/jelajah" element={<ExplorePage />} />
               <Route path="/event/:id" element={<EventDetailPage />} />
+              <Route path="/penyelenggara" element={<OrganizersPage />} />
+              <Route path="/cek-pesanan" element={<OrderLookupPage />} />
               <Route path="/tentang" element={<AboutPage />} />
               <Route path="/kontak" element={<ContactPage />} />
+              <Route path="/faq" element={<FaqPage />} />
+              <Route path="/syarat-ketentuan" element={<TermsPage />} />
+              <Route path="/kebijakan-privasi" element={<PrivacyPage />} />
               <Route path="/checkout/:eventId" element={<CheckoutPage />} />
               <Route path="/tiket-berhasil/:orderId" element={<TicketSuccessPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
 
             {/* Auth Routes */}
@@ -80,9 +104,6 @@ export default function App() {
               <Route path="scanner" element={<StaffScannerPage />} />
               <Route path="events" element={<StaffEventsPage />} />
             </Route>
-
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </ToastProvider>
       </AuthProvider>

@@ -19,6 +19,19 @@ export default function EventDetailPage() {
   const [quantities, setQuantities] = useState({});
   const [activeTab, setActiveTab] = useState('deskripsi');
 
+  const selectedItems = useMemo(() => {
+    if (!event?.ticketTypes) return [];
+    return event.ticketTypes
+      .filter(t => (quantities[t.id] || 0) > 0)
+      .map(t => ({
+        ticketTypeId: t.id,
+        ticketName: t.name,
+        price: t.price,
+        quantity: quantities[t.id],
+        subtotal: t.price * quantities[t.id],
+      }));
+  }, [event, quantities]);
+
   if (!event) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center space-y-4">
@@ -39,19 +52,6 @@ export default function EventDetailPage() {
       return { ...prev, [ticketTypeId]: next };
     });
   };
-
-  const selectedItems = useMemo(() => {
-    if (!event.ticketTypes) return [];
-    return event.ticketTypes
-      .filter(t => (quantities[t.id] || 0) > 0)
-      .map(t => ({
-        ticketTypeId: t.id,
-        ticketName: t.name,
-        price: t.price,
-        quantity: quantities[t.id],
-        subtotal: t.price * quantities[t.id],
-      }));
-  }, [event.ticketTypes, quantities]);
 
   const totalTickets = selectedItems.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = selectedItems.reduce((acc, item) => acc + item.subtotal, 0);

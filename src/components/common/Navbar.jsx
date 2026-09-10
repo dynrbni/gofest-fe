@@ -53,6 +53,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Beranda', path: '/' },
     { name: 'Jelajah Event', path: '/jelajah' },
+    { name: 'Penyelenggara', path: '/penyelenggara' },
     { name: 'Tentang', path: '/tentang' },
     { name: 'Kontak', path: '/kontak' },
   ];
