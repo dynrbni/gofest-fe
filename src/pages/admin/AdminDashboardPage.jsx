@@ -47,7 +47,7 @@ export default function AdminDashboardPage() {
       {/* Top Welcome */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
             Dashboard Pengelola Platform (Admin)
           </h1>
           <p className="text-xs text-slate-500">
@@ -73,7 +73,7 @@ export default function AdminDashboardPage() {
                   <UserCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-extrabold text-sm text-amber-950">
+                  <div className="font-bold text-sm text-amber-950">
                     {stats.pendingEOCount} Pendaftaran EO Menunggu Approval
                   </div>
                   <div className="text-xs text-amber-800">
@@ -97,7 +97,7 @@ export default function AdminDashboardPage() {
                   <CheckSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-extrabold text-sm text-blue-950">
+                  <div className="font-bold text-sm text-blue-950">
                     {stats.pendingEventCount} Pengajuan Event Menunggu Review
                   </div>
                   <div className="text-xs text-blue-800">
@@ -107,7 +107,7 @@ export default function AdminDashboardPage() {
               </div>
               <Link
                 to="/admin/event-approvals"
-                className="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition shadow-xs shrink-0"
+                className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition shadow-xs shrink-0"
               >
                 Tinjau Event
               </Link>
@@ -125,7 +125,7 @@ export default function AdminDashboardPage() {
               <DollarSign className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-brand-700">{formatRupiah(stats.totalGMV)}</div>
+          <div className="text-2xl font-bold text-slate-800">{formatRupiah(stats.totalGMV)}</div>
           <div className="text-[11px] text-slate-500 flex items-center gap-1">
             <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
             <span>Volume Penjualan Seluruh Event</span>
@@ -135,11 +135,11 @@ export default function AdminDashboardPage() {
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2">
           <div className="text-xs text-slate-500 font-semibold flex items-center justify-between">
             <span>Total Tiket Terjual</span>
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-brand-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-slate-700 flex items-center justify-center">
               <Ticket className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">{stats.totalTicketsSold.toLocaleString('id-ID')}</div>
+          <div className="text-2xl font-bold text-slate-900">{stats.totalTicketsSold.toLocaleString('id-ID')}</div>
           <div className="text-[11px] text-slate-500">
             Dari {stats.totalOrders} transaksi berhasil
           </div>
@@ -152,7 +152,7 @@ export default function AdminDashboardPage() {
               <Calendar className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">{stats.publishedEventCount}</div>
+          <div className="text-2xl font-bold text-slate-900">{stats.publishedEventCount}</div>
           <div className="text-[11px] text-slate-500">
             Aktif dapat dibeli pengunjung publik
           </div>
@@ -165,7 +165,7 @@ export default function AdminDashboardPage() {
               <Building2 className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">{stats.approvedEOCount}</div>
+          <div className="text-2xl font-bold text-slate-900">{stats.approvedEOCount}</div>
           <div className="text-[11px] text-slate-500">
             Penyelenggara Terverifikasi
           </div>
@@ -195,7 +195,7 @@ export default function AdminDashboardPage() {
           className="bg-white hover:bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-xs transition group space-y-2"
         >
           <div className="flex items-center justify-between">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 text-brand-700 flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-slate-800 flex items-center justify-center font-bold">
               <CheckSquare className="w-5 h-5" />
             </div>
             <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-700 group-hover:translate-x-1 transition-transform" />

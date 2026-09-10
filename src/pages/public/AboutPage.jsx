@@ -5,10 +5,10 @@ export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
       <div className="text-center space-y-3 max-w-2xl mx-auto">
-        <span className="bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        <span className="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           Tentang Kami
         </span>
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
           Solusi Ticketing Terpercaya untuk Setiap Momen Spesial
         </h1>
         <p className="text-slate-600 text-sm">
@@ -19,7 +19,7 @@ export default function AboutPage() {
       {/* 3 Pillars */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-          <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold">
             <Zap className="w-5 h-5" />
           </div>
           <h3 className="font-bold text-slate-900 text-base">Frictionless Checkout</h3>

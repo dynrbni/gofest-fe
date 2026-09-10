@@ -50,7 +50,7 @@ export default function AdminEOApprovalsPage() {
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Top Header */}
       <div>
-        <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
           Approval Pendaftaran Event Organizer (EO)
         </h1>
         <p className="text-xs text-slate-500">
@@ -73,7 +73,7 @@ export default function AdminEOApprovalsPage() {
               onClick={() => setStatusFilter(tab.id)}
               className={`px-3.5 py-2 rounded-xl font-bold transition shrink-0 ${
                 statusFilter === tab.id
-                  ? 'bg-brand-900 text-white shadow-xs'
+                  ? 'bg-slate-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
@@ -90,7 +90,7 @@ export default function AdminEOApprovalsPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari nama organisasi/email..."
-            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white"
+            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white"
           />
         </div>
       </div>
@@ -133,15 +133,15 @@ export default function AdminEOApprovalsPage() {
                       <td className="p-4 text-slate-600">{formatDateIndo(eo.createdAt)}</td>
                       <td className="p-4">
                         {eo.status === 'approved' ? (
-                          <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                          <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full">
                             APPROVED
                           </span>
                         ) : eo.status === 'pending' ? (
-                          <span className="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                          <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full">
                             PENDING REVIEW
                           </span>
                         ) : (
-                          <span className="bg-rose-100 text-rose-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                          <span className="bg-rose-100 text-rose-800 text-[10px] font-bold px-2.5 py-1 rounded-full">
                             REJECTED
                           </span>
                         )}
@@ -228,7 +228,7 @@ export default function AdminEOApprovalsPage() {
 
               <div>
                 <span className="text-slate-400 block font-semibold">Status Saat Ini:</span>
-                <span className="font-bold uppercase text-brand-700">{selectedEO.status}</span>
+                <span className="font-bold uppercase text-slate-800">{selectedEO.status}</span>
               </div>
             </div>
 

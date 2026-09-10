@@ -41,7 +41,7 @@ export default function CheckoutPage() {
   if (!checkoutData) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-8 h-8 border-4 border-slate-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-slate-500 text-sm">Menyiapkan form checkout tiket...</p>
       </div>
     );
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
         </button>
 
         <div className="flex items-center gap-2 text-xs text-slate-500">
-          <span className="font-bold text-brand-600">1. Data Pemesan</span>
+          <span className="font-bold text-slate-700">1. Data Pemesan</span>
           <span>&gt;</span>
           <span className="font-semibold text-slate-700">2. Pembayaran</span>
           <span>&gt;</span>
@@ -150,11 +150,11 @@ export default function CheckoutPage() {
         {/* Left Column: Guest Buyer Form & Payment Method */}
         <div className="lg:col-span-7 space-y-8">
           {/* Guest Checkout Notice Card (PRD BUY-03 & 7.Usability) */}
-          <div className="bg-brand-50 border border-brand-200/80 rounded-2xl p-4 flex items-start gap-3 text-xs text-brand-900">
-            <Sparkles className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+          <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex items-start gap-3 text-xs text-slate-900">
+            <Sparkles className="w-5 h-5 text-slate-700 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-brand-950 text-sm">Guest Checkout (Tanpa Perlu Akun)</div>
-              <p className="text-brand-700 mt-0.5 leading-relaxed">
+              <div className="font-bold text-slate-900 text-sm">Guest Checkout (Tanpa Perlu Akun)</div>
+              <p className="text-slate-800 mt-0.5 leading-relaxed">
                 Anda tidak perlu login atau membuat password. Pastikan email yang Anda isi aktif, karena seluruh file e-ticket dan barcode QR code akan dikirimkan langsung ke alamat email tersebut.
               </p>
             </div>
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
           {/* 1. Buyer Information Form */}
           <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-6 space-y-4">
             <div className="flex items-center gap-2 text-slate-900 border-b border-slate-100 pb-3">
-              <User className="w-5 h-5 text-brand-600" />
+              <User className="w-5 h-5 text-slate-700" />
               <h2 className="font-bold text-base">Identitas Pemesan</h2>
             </div>
 
@@ -178,7 +178,7 @@ export default function CheckoutPage() {
                   value={buyerForm.name}
                   onChange={(e) => setBuyerForm({ ...buyerForm, name: e.target.value })}
                   placeholder="Contoh: Budi Santoso"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                 />
               </div>
 
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
                   value={buyerForm.email}
                   onChange={(e) => setBuyerForm({ ...buyerForm, email: e.target.value })}
                   placeholder="contoh@email.com"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                 />
               </div>
 
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
                   value={buyerForm.phone}
                   onChange={(e) => setBuyerForm({ ...buyerForm, phone: e.target.value })}
                   placeholder="Contoh: 081234567890"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                 />
               </div>
             </form>
@@ -215,7 +215,7 @@ export default function CheckoutPage() {
           {/* 2. Payment Method Selector */}
           <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-6 space-y-4">
             <div className="flex items-center gap-2 text-slate-900 border-b border-slate-100 pb-3">
-              <CreditCard className="w-5 h-5 text-brand-600" />
+              <CreditCard className="w-5 h-5 text-slate-700" />
               <h2 className="font-bold text-base">Metode Pembayaran Online</h2>
             </div>
 
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                     onClick={() => setPaymentMethod(opt.id)}
                     className={`flex items-start justify-between p-4 rounded-xl border cursor-pointer transition-all ${
                       selected
-                        ? 'border-brand-600 bg-brand-50/50 shadow-xs'
+                        ? 'border-slate-700 bg-slate-50/50 shadow-xs'
                         : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
@@ -238,13 +238,13 @@ export default function CheckoutPage() {
                         name="payment_method"
                         checked={selected}
                         onChange={() => setPaymentMethod(opt.id)}
-                        className="mt-1 text-brand-600 focus:ring-brand-500 cursor-pointer"
+                        className="mt-1 text-slate-700 focus:ring-slate-400 cursor-pointer"
                       />
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-xs text-slate-900">{opt.name}</span>
                           {opt.badge && (
-                            <span className="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+                            <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
                               {opt.badge}
                             </span>
                           )}
@@ -277,11 +277,11 @@ export default function CheckoutPage() {
               <div className="space-y-1 text-xs">
                 <h4 className="font-bold text-slate-900 line-clamp-2 leading-snug">{event.title}</h4>
                 <div className="flex items-center gap-1.5 text-slate-500">
-                  <Calendar className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+                  <Calendar className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                   <span>{formatDateIndo(event.date)}</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-slate-500">
-                  <MapPin className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                   <span className="truncate max-w-[170px]">{event.location}</span>
                 </div>
               </div>
@@ -317,14 +317,14 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between items-baseline pt-3 border-t border-slate-200">
                 <span className="font-bold text-sm text-slate-900">Total Tagihan</span>
-                <span className="text-xl font-black text-brand-700">{formatRupiah(totalAmount)}</span>
+                <span className="text-xl font-bold text-slate-800">{formatRupiah(totalAmount)}</span>
               </div>
             </div>
 
             {/* Pay Button */}
             <button
               onClick={handleOpenPayment}
-              className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all flex items-center justify-center gap-2"
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-slate-900/10 hover:shadow-slate-900/10 transition-all flex items-center justify-center gap-2"
             >
               <Lock className="w-4 h-4" />
               <span>Lanjut ke Pembayaran ({formatRupiah(totalAmount)})</span>

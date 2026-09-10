@@ -63,19 +63,19 @@ export default function PaymentModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-slate-200 overflow-hidden relative">
         {/* Header with Midtrans Sandbox Branding */}
-        <div className="bg-brand-900 text-white p-5 flex items-center justify-between">
+        <div className="bg-slate-900 text-white p-5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center font-bold text-xs text-white">
+            <div className="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center font-bold text-xs text-white">
               GF
             </div>
             <div>
               <div className="font-bold text-sm flex items-center gap-1.5">
                 <span>GoFest Payment Gateway</span>
-                <span className="bg-amber-400 text-brand-950 text-[10px] font-extrabold px-1.5 py-0.5 rounded">
+                <span className="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.5 rounded">
                   SANDBOX
                 </span>
               </div>
-              <div className="text-xs text-brand-200">Metode: {paymentMethod}</div>
+              <div className="text-xs text-slate-400">Metode: {paymentMethod}</div>
             </div>
           </div>
 
@@ -93,7 +93,7 @@ export default function PaymentModal({
             <Clock className="w-4 h-4 text-amber-600 animate-pulse" />
             <span>Selesaikan pembayaran dalam:</span>
           </div>
-          <div className="font-mono font-black text-sm text-amber-900 bg-amber-200/60 px-2 py-0.5 rounded">
+          <div className="font-mono font-bold text-sm text-amber-900 bg-amber-200/60 px-2 py-0.5 rounded">
             {formattedTime}
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function PaymentModal({
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center justify-between">
             <div>
               <div className="text-xs text-slate-500 font-medium">Total Tagihan</div>
-              <div className="text-xl font-black text-brand-700">
+              <div className="text-xl font-bold text-slate-800">
                 {formatRupiah(orderData.totalAmount)}
               </div>
             </div>
@@ -176,19 +176,19 @@ export default function PaymentModal({
                 Transfer tepat sesuai nominal tagihan ke nomor Virtual Account di bawah:
               </div>
 
-              <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center justify-between">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center justify-between">
                 <div>
-                  <div className="text-[11px] font-bold text-brand-700 uppercase tracking-wider">
+                  <div className="text-[11px] font-bold text-slate-800 uppercase tracking-wider">
                     Nomor Virtual Account {paymentMethod}
                   </div>
-                  <div className="text-lg font-mono font-black text-brand-950 tracking-wider">
+                  <div className="text-lg font-mono font-bold text-slate-900 tracking-wider">
                     {vaNumber}
                   </div>
                 </div>
 
                 <button
                   onClick={handleCopyVA}
-                  className="flex items-center gap-1.5 bg-white hover:bg-slate-100 text-brand-700 font-bold text-xs px-3 py-2 rounded-xl border border-brand-300 shadow-xs transition"
+                  className="flex items-center gap-1.5 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs px-3 py-2 rounded-xl border border-slate-200 shadow-xs transition"
                 >
                   {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                   <span>{copied ? 'Tersalin' : 'Salin'}</span>
