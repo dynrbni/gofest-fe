@@ -121,7 +121,7 @@ export default function StaffScannerPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
             <QrCode className="w-7 h-7 text-purple-600" />
             <span>Scanner Tiket Lapangan (Gate In)</span>
           </h1>
@@ -176,7 +176,7 @@ export default function StaffScannerPage() {
 
               <div className="space-y-1">
                 <span
-                  className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                  className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
                     validationResult.status === 'valid'
                       ? 'bg-emerald-800 text-emerald-200'
                       : validationResult.status === 'already_used'
@@ -191,7 +191,7 @@ export default function StaffScannerPage() {
                     : 'TIKET TIDAK DITEMUKAN / TIDAK VALID'}
                 </span>
 
-                <h3 className="text-xl font-black">
+                <h3 className="text-xl font-bold">
                   {validationResult.message}
                 </h3>
 
@@ -416,7 +416,7 @@ export default function StaffScannerPage() {
                     <td className="p-4 text-slate-600">{formatDateTimeIndo(log.timestamp)}</td>
                     <td className="p-4 text-slate-700 font-medium">{log.staffName}</td>
                     <td className="p-4 text-right">
-                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
+                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
                         CHECKED IN
                       </span>
                     </td>

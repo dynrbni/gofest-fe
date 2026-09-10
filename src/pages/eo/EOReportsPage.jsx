@@ -63,7 +63,7 @@ export default function EOReportsPage() {
       {/* Header & Filter Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
             Laporan Penjualan & Kuota Tiket
           </h1>
           <p className="text-xs text-slate-500">
@@ -77,7 +77,7 @@ export default function EOReportsPage() {
           <select
             value={selectedEventId}
             onChange={(e) => setSelectedEventId(e.target.value)}
-            className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 shadow-xs focus:outline-none focus:border-brand-500 cursor-pointer max-w-xs"
+            className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 shadow-xs focus:outline-none focus:border-slate-400 cursor-pointer max-w-xs"
           >
             <option value="all">Semua Event Promotor ({myEvents.length})</option>
             {myEvents.map(ev => (
@@ -98,7 +98,7 @@ export default function EOReportsPage() {
               <DollarSign className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-brand-700">
+          <div className="text-2xl font-bold text-slate-800">
             {formatRupiah(reportStats.totalRevenue)}
           </div>
           <div className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
@@ -114,7 +114,7 @@ export default function EOReportsPage() {
               <Ticket className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-2xl font-bold text-slate-900">
             {reportStats.totalSold.toLocaleString('id-ID')} <span className="text-sm font-normal text-slate-400">Tiket</span>
           </div>
           <div className="text-[11px] text-slate-500">
@@ -129,7 +129,7 @@ export default function EOReportsPage() {
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-2xl font-bold text-slate-900">
             {reportStats.remainingQuota.toLocaleString('id-ID')} <span className="text-sm font-normal text-slate-400">Tiket</span>
           </div>
           <div className="text-[11px] text-slate-500">
@@ -144,7 +144,7 @@ export default function EOReportsPage() {
               <BarChart3 className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-2xl font-bold text-slate-900">
             {relevantOrders.length} <span className="text-sm font-normal text-slate-400">Pesanan</span>
           </div>
           <div className="text-[11px] text-slate-500">
@@ -192,7 +192,7 @@ export default function EOReportsPage() {
                         {ev.title}
                       </td>
                       <td className="p-4">
-                        <span className="font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded border border-brand-100">
+                        <span className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
                           {tt.name}
                         </span>
                       </td>
@@ -212,14 +212,14 @@ export default function EOReportsPage() {
                         <div className="flex items-center gap-2">
                           <div className="w-16 bg-slate-100 h-1.5 rounded-full overflow-hidden">
                             <div
-                              className="bg-brand-600 h-full rounded-full"
+                              className="bg-slate-800 h-full rounded-full"
                               style={{ width: `${Math.min(100, percent)}%` }}
                             ></div>
                           </div>
                           <span className="text-slate-500 font-medium">{percent}%</span>
                         </div>
                       </td>
-                      <td className="p-4 text-right font-mono font-black text-brand-700">
+                      <td className="p-4 text-right font-mono font-bold text-slate-800">
                         {formatRupiah(tierRevenue)}
                       </td>
                     </tr>
@@ -256,7 +256,7 @@ export default function EOReportsPage() {
               {relevantOrders.length > 0 ? (
                 relevantOrders.map(ord => (
                   <tr key={ord.id} className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 font-mono font-bold text-brand-700">{ord.orderNumber}</td>
+                    <td className="p-4 font-mono font-bold text-slate-800">{ord.orderNumber}</td>
                     <td className="p-4">
                       <div className="font-bold text-slate-900">{ord.buyerName}</div>
                       <div className="text-[11px] text-slate-400">{ord.buyerEmail}</div>
@@ -270,7 +270,7 @@ export default function EOReportsPage() {
                     <td className="p-4 text-slate-600">
                       {ord.items?.map(it => `${it.quantity}x ${it.ticketName}`).join(', ')}
                     </td>
-                    <td className="p-4 text-right font-mono font-black text-brand-700">
+                    <td className="p-4 text-right font-mono font-bold text-slate-800">
                       {formatRupiah(ord.totalAmount)}
                     </td>
                   </tr>

@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Calendar, MapPin, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
 import { formatDateIndo, formatRupiah } from '../../utils/formatters';
 
 export default function HeroBanner({ featuredEvents = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Fallback banners if not enough featured events
   const banners = featuredEvents.length > 0 ? featuredEvents : [
     {
       id: 'ev-1',
       title: 'Remember Fest 2026: The Nostalgic Sound',
-      tagline: '#SOLUSITIKET EVENTMU',
       category: 'Festival Musik',
       date: '2026-11-07',
       location: 'Gambir Expo Kemayoran, Jakarta',
@@ -21,7 +19,6 @@ export default function HeroBanner({ featuredEvents = [] }) {
     {
       id: 'ev-5',
       title: '2026 GONG YOO ASIA FANMEETING TOUR <THE LONG TAKE>',
-      tagline: 'THE LONG TAKE • LIVE IN JAKARTA',
       category: 'Fanmeeting',
       date: '2026-10-17',
       location: 'Istora Senayan, Jakarta Pusat',
@@ -31,7 +28,6 @@ export default function HeroBanner({ featuredEvents = [] }) {
     {
       id: 'ev-2',
       title: "SYNC 2026 'Luminaria' feat. Adrian Khalif",
-      tagline: 'LIVE PERFORMANCE & LIGHT EXPERIENCE',
       category: 'Konser',
       date: '2026-10-17',
       location: 'Grand Studio BSD, Tangerang',
@@ -41,7 +37,6 @@ export default function HeroBanner({ featuredEvents = [] }) {
     {
       id: 'ev-3',
       title: 'Ayo Fest 2026: Youth & Indie Explosion',
-      tagline: 'FESTIVAL MUSIK & KREATIF TERBESAR',
       category: 'Festival',
       date: '2026-09-20',
       location: 'Stadion Kridosono, Yogyakarta',
@@ -50,7 +45,6 @@ export default function HeroBanner({ featuredEvents = [] }) {
     }
   ];
 
-  // Auto slide every 6 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % banners.length);
@@ -67,27 +61,32 @@ export default function HeroBanner({ featuredEvents = [] }) {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-brand-900 via-brand-800 to-slate-50 pt-6 pb-12 overflow-hidden">
-      {/* Background ambient lighting effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-accent-orange/15 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div className="relative bg-slate-50 pt-6 pb-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Carousel Viewport with Artatix-style 3D Coverflow Perspective */}
-        <div className="relative flex items-center justify-center min-h-[360px] md:min-h-[420px]">
-          {/* Previous Arrow */}
+        {/* Section Header */}
+        <div className="mb-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            Event Pilihan
+          </h2>
+          <p className="text-sm text-slate-500 mt-1">
+            Jangan lewatkan event-event terbaik yang sedang berlangsung
+          </p>
+        </div>
+
+        {/* Carousel */}
+        <div className="relative flex items-center justify-center min-h-[320px] md:min-h-[400px]">
+          {/* Prev */}
           <button
             onClick={handlePrev}
             aria-label="Previous Slide"
-            className="absolute left-2 md:left-6 z-30 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-brand-900 shadow-xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+            className="absolute left-2 md:left-4 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center transition hover:scale-105 active:scale-95 border border-slate-200/60"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
-          {/* Slides Container */}
-          <div className="relative w-full max-w-4xl h-[340px] md:h-[400px] flex items-center justify-center">
+          {/* Slides */}
+          <div className="relative w-full max-w-4xl h-[300px] md:h-[380px] flex items-center justify-center">
             {banners.map((item, index) => {
-              // Calculate relative offset for coverflow positioning
               const total = banners.length;
               let offset = (index - currentIndex + total) % total;
               if (offset > total / 2) offset -= total;
@@ -97,7 +96,6 @@ export default function HeroBanner({ featuredEvents = [] }) {
               const isRight = offset === 1 || (offset > 0 && offset <= 2);
               const isVisible = Math.abs(offset) <= 1;
 
-              // Calculate style transforms
               let transformStyle = '';
               let opacityStyle = 0;
               let zIndex = 10;
@@ -107,12 +105,12 @@ export default function HeroBanner({ featuredEvents = [] }) {
                 opacityStyle = 1;
                 zIndex = 25;
               } else if (isLeft) {
-                transformStyle = 'translateX(-55%) scale(0.85) rotateY(15deg)';
-                opacityStyle = 0.55;
+                transformStyle = 'translateX(-55%) scale(0.88) rotateY(12deg)';
+                opacityStyle = 0.5;
                 zIndex = 15;
               } else if (isRight) {
-                transformStyle = 'translateX(55%) scale(0.85) rotateY(-15deg)';
-                opacityStyle = 0.55;
+                transformStyle = 'translateX(55%) scale(0.88) rotateY(-12deg)';
+                opacityStyle = 0.5;
                 zIndex = 15;
               } else {
                 transformStyle = offset > 0 ? 'translateX(100%) scale(0.6)' : 'translateX(-100%) scale(0.6)';
@@ -127,7 +125,7 @@ export default function HeroBanner({ featuredEvents = [] }) {
               return (
                 <div
                   key={item.id || index}
-                  className={`absolute w-full h-full transition-all duration-700 ease-out cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/20 select-none ${
+                  className={`absolute w-full h-full transition-all duration-700 ease-out cursor-pointer rounded-2xl overflow-hidden shadow-lg select-none ${
                     !isVisible ? 'pointer-events-none' : ''
                   }`}
                   style={{
@@ -147,37 +145,32 @@ export default function HeroBanner({ featuredEvents = [] }) {
                     />
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
-                    {/* Badge Slogan in Artatix style */}
-                    <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2">
-                      <span className="bg-brand-600/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-brand-400/40 shadow-md flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                        {item.category || 'Featured Event'}
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4 md:top-5 md:left-5">
+                      <span className="bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-semibold px-3 py-1.5 rounded-lg">
+                        {item.category || 'Featured'}
                       </span>
                     </div>
 
-                    {/* Banner Content Details */}
-                    <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-8 md:right-8 text-white">
-                      <div className="text-amber-400 font-extrabold tracking-wider text-xs md:text-sm uppercase mb-1 drop-shadow">
-                        {item.tagline || `#SOLUSITIKET EVENTMU`}
-                      </div>
-
-                      <h2 className="text-lg md:text-2xl lg:text-3xl font-black leading-tight drop-shadow-md line-clamp-2 max-w-2xl mb-2">
+                    {/* Content */}
+                    <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-white">
+                      <h2 className="text-lg md:text-2xl font-bold leading-tight line-clamp-2 max-w-2xl mb-3">
                         {item.title}
                       </h2>
 
-                      <div className="flex flex-wrap items-center gap-3 md:gap-5 text-xs text-slate-200">
+                      <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs text-white/80">
                         <div className="flex items-center gap-1.5">
-                          <Calendar className="w-4 h-4 text-brand-300 shrink-0" />
+                          <Calendar className="w-3.5 h-3.5 shrink-0" />
                           <span>{formatDateIndo(item.date)}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <MapPin className="w-4 h-4 text-brand-300 shrink-0" />
-                          <span className="truncate max-w-[200px] md:max-w-xs">{item.location}</span>
+                          <MapPin className="w-3.5 h-3.5 shrink-0" />
+                          <span className="truncate max-w-[180px] md:max-w-xs">{item.location}</span>
                         </div>
-                        <div className="ml-auto bg-accent-orange text-white font-bold px-3 py-1 rounded-full text-xs shadow-lg">
-                          Mulai {formatRupiah(lowestPrice)}
+                        <div className="ml-auto bg-white text-slate-900 font-semibold px-3 py-1 rounded-lg text-xs">
+                          {formatRupiah(lowestPrice)}
                         </div>
                       </div>
                     </div>
@@ -187,26 +180,26 @@ export default function HeroBanner({ featuredEvents = [] }) {
             })}
           </div>
 
-          {/* Next Arrow */}
+          {/* Next */}
           <button
             onClick={handleNext}
             aria-label="Next Slide"
-            className="absolute right-2 md:right-6 z-30 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-brand-900 shadow-xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+            className="absolute right-2 md:right-4 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center transition hover:scale-105 active:scale-95 border border-slate-200/60"
           >
-            <ChevronRight className="w-6 h-6 stroke-[2.5]" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Carousel Pagination Dots */}
-        <div className="flex justify-center items-center gap-2 mt-6">
+        {/* Dots */}
+        <div className="flex justify-center items-center gap-2 mt-5">
           {banners.map((_, dotIdx) => (
             <button
               key={dotIdx}
               onClick={() => setCurrentIndex(dotIdx)}
-              className={`h-2 transition-all duration-300 rounded-full ${
+              className={`h-1.5 transition-all duration-300 rounded-full ${
                 dotIdx === currentIndex
-                  ? 'w-8 bg-brand-600'
-                  : 'w-2 bg-brand-300/60 hover:bg-brand-400'
+                  ? 'w-6 bg-slate-900'
+                  : 'w-1.5 bg-slate-300 hover:bg-slate-400'
               }`}
               aria-label={`Go to slide ${dotIdx + 1}`}
             />

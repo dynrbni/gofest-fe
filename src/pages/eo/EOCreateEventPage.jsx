@@ -104,7 +104,7 @@ export default function EOCreateEventPage() {
             <ChevronLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
               Buat Event Baru
             </h1>
             <p className="text-xs text-slate-500">
@@ -118,7 +118,7 @@ export default function EOCreateEventPage() {
         {/* Section 1: Informasi Acara */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs space-y-5">
           <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-            <Calendar className="w-5 h-5 text-brand-600" />
+            <Calendar className="w-5 h-5 text-slate-700" />
             <h2 className="font-bold text-base text-slate-900">1. Informasi Umum Acara</h2>
           </div>
 
@@ -133,7 +133,7 @@ export default function EOCreateEventPage() {
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder="Contoh: Soundrenaline Fest 2026: The Sonic Horizon"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
               />
             </div>
 
@@ -144,7 +144,7 @@ export default function EOCreateEventPage() {
               <select
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white cursor-pointer"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white cursor-pointer"
               >
                 <option value="Musik">Musik</option>
                 <option value="Konser">Konser</option>
@@ -165,7 +165,7 @@ export default function EOCreateEventPage() {
                   required
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
                 />
               </div>
               <div>
@@ -178,7 +178,7 @@ export default function EOCreateEventPage() {
                   value={form.time}
                   onChange={(e) => setForm({ ...form, time: e.target.value })}
                   placeholder="15:00 - 23:00 WIB"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
                 />
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function EOCreateEventPage() {
                 value={form.location}
                 onChange={(e) => setForm({ ...form, location: e.target.value })}
                 placeholder="Contoh: Istora Senayan, GBK"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
               />
             </div>
 
@@ -207,7 +207,7 @@ export default function EOCreateEventPage() {
                 value={form.city}
                 onChange={(e) => setForm({ ...form, city: e.target.value })}
                 placeholder="Contoh: Jakarta Pusat"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
               />
             </div>
           </div>
@@ -223,7 +223,7 @@ export default function EOCreateEventPage() {
               value={form.banner}
               onChange={(e) => setForm({ ...form, banner: e.target.value })}
               placeholder="https://images.unsplash.com/..."
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white mb-2"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white mb-2"
             />
 
             {/* Quick preset chips */}
@@ -239,7 +239,7 @@ export default function EOCreateEventPage() {
                   onClick={() => setForm({ ...form, banner: preset.url })}
                   className={`px-2.5 py-1 rounded-lg text-[11px] font-medium border transition ${
                     form.banner === preset.url
-                      ? 'bg-brand-50 border-brand-500 text-brand-700 font-bold'
+                      ? 'bg-slate-50 border-slate-400 text-slate-800 font-bold'
                       : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
                   }`}
                 >
@@ -269,7 +269,7 @@ export default function EOCreateEventPage() {
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               placeholder="Tuliskan line-up artis pengisi acara, rundown, tata tertib, dan keunggulan festival Anda..."
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
             ></textarea>
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function EOCreateEventPage() {
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
             <div className="flex items-center gap-2">
-              <Ticket className="w-5 h-5 text-brand-600" />
+              <Ticket className="w-5 h-5 text-slate-700" />
               <div>
                 <h2 className="font-bold text-base text-slate-900">2. Konfigurasi Jenis & Harga Tiket (Multi-Tier)</h2>
                 <p className="text-[11px] text-slate-500">Tentukan nama kategori tiket, harga dalam Rupiah, dan batasan kuota</p>
@@ -288,7 +288,7 @@ export default function EOCreateEventPage() {
             <button
               type="button"
               onClick={handleAddTicketTier}
-              className="inline-flex items-center gap-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold px-3 py-1.5 rounded-xl border border-brand-200 transition self-start sm:self-auto"
+              className="inline-flex items-center gap-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition self-start sm:self-auto"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Tambah Kategori Tiket</span>
@@ -327,7 +327,7 @@ export default function EOCreateEventPage() {
                       value={tier.name}
                       onChange={(e) => handleTicketChange(idx, 'name', e.target.value)}
                       placeholder="Contoh: Presale 1 Regular"
-                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-brand-500"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-slate-400"
                     />
                   </div>
 
@@ -341,7 +341,7 @@ export default function EOCreateEventPage() {
                       value={tier.price}
                       onChange={(e) => handleTicketChange(idx, 'price', Number(e.target.value))}
                       placeholder="150000"
-                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-brand-500 font-mono"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-slate-400 font-mono"
                     />
                   </div>
 
@@ -354,7 +354,7 @@ export default function EOCreateEventPage() {
                       value={tier.quota}
                       onChange={(e) => handleTicketChange(idx, 'quota', Number(e.target.value))}
                       placeholder="500"
-                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-brand-500 font-mono"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-slate-400 font-mono"
                     />
                   </div>
 
@@ -365,7 +365,7 @@ export default function EOCreateEventPage() {
                       value={tier.description}
                       onChange={(e) => handleTicketChange(idx, 'description', e.target.value)}
                       placeholder="Contoh: Termasuk 1 minuman gratis & tempat duduk bernomor"
-                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-brand-500"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-900 text-xs focus:outline-none focus:border-slate-400"
                     />
                   </div>
                 </div>
@@ -374,17 +374,17 @@ export default function EOCreateEventPage() {
           </div>
 
           {/* Sum Summary Card */}
-          <div className="bg-brand-50/60 border border-brand-200/80 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
+          <div className="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="text-slate-600 font-medium">Total Kapasitas Penjualan:</div>
-              <div className="text-lg font-black text-slate-900">
+              <div className="text-lg font-bold text-slate-900">
                 {totalQuotaSum.toLocaleString('id-ID')} Tiket ({ticketTypes.length} Kategori)
               </div>
             </div>
 
             <div className="text-right">
               <div className="text-slate-600 font-medium">Potensi Omzet Maksimal:</div>
-              <div className="text-lg font-black text-brand-700">
+              <div className="text-lg font-bold text-slate-800">
                 {formatRupiah(potentialRevenue)}
               </div>
             </div>
@@ -408,7 +408,7 @@ export default function EOCreateEventPage() {
           <div className="pt-2 flex flex-col sm:flex-row gap-3">
             <button
               type="submit"
-              className="flex-1 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm py-3.5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2"
+              className="flex-1 bg-slate-500 hover:bg-slate-900 text-white font-bold text-sm py-3.5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2"
             >
               <CheckCircle2 className="w-5 h-5" />
               <span>Ajukan Event ke Admin (Submit for Review)</span>

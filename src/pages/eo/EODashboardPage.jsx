@@ -49,13 +49,13 @@ export default function EODashboardPage() {
   const getStatusBadge = (status) => {
     switch (status) {
       case 'published':
-        return <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>PUBLISHED</span>;
+        return <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>PUBLISHED</span>;
       case 'pending_review':
-        return <span className="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>MENUNGGU ADMIN</span>;
+        return <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>MENUNGGU ADMIN</span>;
       case 'rejected':
-        return <span className="bg-rose-100 text-rose-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit"><span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>REJECTED</span>;
+        return <span className="bg-rose-100 text-rose-800 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit"><span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>REJECTED</span>;
       default:
-        return <span className="bg-slate-100 text-slate-700 text-[10px] font-extrabold px-2.5 py-1 rounded-full w-fit">DRAFT</span>;
+        return <span className="bg-slate-100 text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-full w-fit">DRAFT</span>;
     }
   };
 
@@ -64,7 +64,7 @@ export default function EODashboardPage() {
       {/* Top Welcome & Quick Create */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
             Dashboard Penyelenggara Event
           </h1>
           <p className="text-xs text-slate-500">
@@ -74,7 +74,7 @@ export default function EODashboardPage() {
 
         <Link
           to="/eo/events/new"
-          className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition w-fit"
+          className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition w-fit"
         >
           <Plus className="w-4 h-4" />
           <span>Buat Event Baru</span>
@@ -86,11 +86,11 @@ export default function EODashboardPage() {
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-xs font-semibold">Total Event</span>
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-brand-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-slate-700 flex items-center justify-center">
               <Calendar className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">{stats.totalEvents}</div>
+          <div className="text-2xl font-bold text-slate-900">{stats.totalEvents}</div>
           <div className="text-[11px] text-slate-500">
             <span className="text-emerald-700 font-bold">{stats.publishedCount} Tayang</span> • {stats.pendingCount} Review
           </div>
@@ -103,7 +103,7 @@ export default function EODashboardPage() {
               <Ticket className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">{stats.totalSold.toLocaleString('id-ID')}</div>
+          <div className="text-2xl font-bold text-slate-900">{stats.totalSold.toLocaleString('id-ID')}</div>
           <div className="text-[11px] text-slate-500">
             Dari total kapasitas <strong className="text-slate-700">{stats.totalQuota.toLocaleString('id-ID')}</strong> ({stats.soldPercentage}%)
           </div>
@@ -116,7 +116,7 @@ export default function EODashboardPage() {
               <DollarSign className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-brand-700">{formatRupiah(stats.estimatedRevenue)}</div>
+          <div className="text-2xl font-bold text-slate-800">{formatRupiah(stats.estimatedRevenue)}</div>
           <div className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
             <TrendingUp className="w-3.5 h-3.5" />
             <span>Pendapatan Kotor Penjualan</span>
@@ -130,7 +130,7 @@ export default function EODashboardPage() {
               <ShieldCheck className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-lg font-black text-emerald-700 flex items-center gap-1.5">
+          <div className="text-lg font-bold text-emerald-700 flex items-center gap-1.5">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
             <span>Terverifikasi</span>
           </div>
@@ -150,7 +150,7 @@ export default function EODashboardPage() {
 
           <Link
             to="/eo/events"
-            className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1"
+            className="text-xs font-bold text-slate-700 hover:text-slate-800 flex items-center gap-1"
           >
             <span>Semua Event</span>
             <ArrowRight className="w-4 h-4" />
@@ -203,7 +203,7 @@ export default function EODashboardPage() {
                         </div>
                         <div className="w-28 bg-slate-100 h-1.5 rounded-full overflow-hidden">
                           <div
-                            className="bg-brand-600 h-full rounded-full"
+                            className="bg-slate-800 h-full rounded-full"
                             style={{ width: `${Math.min(100, percent)}%` }}
                           ></div>
                         </div>
@@ -214,7 +214,7 @@ export default function EODashboardPage() {
                         <Link
                           to={`/event/${event.id}`}
                           target="_blank"
-                          className="text-brand-600 hover:text-brand-700 font-semibold"
+                          className="text-slate-700 hover:text-slate-800 font-semibold"
                         >
                           Lihat Publik
                         </Link>

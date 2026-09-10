@@ -32,7 +32,7 @@ export default function AdminTransactionsPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
             Monitoring Transaksi Platform
           </h1>
           <p className="text-xs text-slate-500">
@@ -42,7 +42,7 @@ export default function AdminTransactionsPage() {
 
         <div className="flex items-center gap-3">
           <div className="bg-white border border-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-800 shadow-xs">
-            Total GMV: <span className="text-brand-700 font-black">{formatRupiah(totalGMV)}</span>
+            Total GMV: <span className="text-slate-800 font-bold">{formatRupiah(totalGMV)}</span>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function AdminTransactionsPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari no. order, nama pembeli, judul event..."
-            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white"
+            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white"
           />
         </div>
 
@@ -97,7 +97,7 @@ export default function AdminTransactionsPage() {
               {filteredOrders.length > 0 ? (
                 filteredOrders.map(ord => (
                   <tr key={ord.id} className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 font-mono font-bold text-brand-700">{ord.orderNumber}</td>
+                    <td className="p-4 font-mono font-bold text-slate-800">{ord.orderNumber}</td>
                     <td className="p-4 max-w-[200px]">
                       <div className="font-bold text-slate-900 truncate">{ord.eventTitle}</div>
                       <div className="text-[11px] text-slate-400">{ord.eventLocation?.split(',')[0]}</div>
@@ -113,12 +113,12 @@ export default function AdminTransactionsPage() {
                       </span>
                     </td>
                     <td className="p-4">
-                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 w-fit">
+                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 w-fit">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                         PAID (LUNAS)
                       </span>
                     </td>
-                    <td className="p-4 text-right font-mono font-black text-brand-700">
+                    <td className="p-4 text-right font-mono font-bold text-slate-800">
                       {formatRupiah(ord.totalAmount)}
                     </td>
                   </tr>

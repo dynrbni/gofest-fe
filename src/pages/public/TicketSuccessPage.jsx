@@ -39,7 +39,7 @@ export default function TicketSuccessPage() {
         <Ticket className="w-16 h-16 text-slate-300 mx-auto" />
         <h2 className="text-xl font-bold text-slate-800">Pesanan Tidak Ditemukan</h2>
         <p className="text-xs text-slate-500">Nomor pesanan mungkin tidak valid atau sudah kedaluwarsa.</p>
-        <Link to="/" className="inline-block bg-brand-600 text-white font-bold text-xs px-4 py-2 rounded-xl">
+        <Link to="/" className="inline-block bg-slate-900 text-white font-bold text-xs px-4 py-2 rounded-xl">
           Kembali ke Beranda
         </Link>
       </div>
@@ -66,7 +66,7 @@ export default function TicketSuccessPage() {
           <span className="bg-emerald-800/60 text-emerald-100 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
             Transaksi Sukses • Status: LUNAS
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black">
+          <h1 className="text-2xl sm:text-3xl font-bold">
             Pembayaran Berhasil Dikonfirmasi!
           </h1>
           <p className="text-emerald-100 text-xs sm:text-sm max-w-lg mx-auto">
@@ -98,7 +98,7 @@ export default function TicketSuccessPage() {
 
           <Link
             to="/"
-            className="flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition"
+            className="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition"
           >
             <span>Selesai & Beranda</span>
             <ArrowRight className="w-4 h-4" />
@@ -109,8 +109,8 @@ export default function TicketSuccessPage() {
       {/* Individual Digital E-Tickets (PRD 7: QR Code Unik) */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-            <Ticket className="w-5 h-5 text-brand-600" />
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Ticket className="w-5 h-5 text-slate-700" />
             <span>E-Ticket Digital ({order.tickets?.length || 1} Tiket)</span>
           </h2>
           <span className="text-xs text-slate-500">Tunjukkan QR code ini di pintu masuk (gate)</span>
@@ -125,7 +125,7 @@ export default function TicketSuccessPage() {
             <div className="md:col-span-8 p-6 sm:p-8 space-y-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="bg-brand-50 text-brand-700 border border-brand-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                  <span className="bg-slate-100 text-slate-700 border border-slate-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
                     {tix.ticketTypeName}
                   </span>
                   <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
@@ -134,13 +134,13 @@ export default function TicketSuccessPage() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-black text-slate-900 leading-snug mb-2">
+                <h3 className="text-xl font-bold text-slate-900 leading-snug mb-2">
                   {order.eventTitle}
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 pt-2">
                   <div className="flex items-start gap-2">
-                    <Calendar className="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
+                    <Calendar className="w-4 h-4 text-slate-700 shrink-0 mt-0.5" />
                     <div>
                       <div className="font-semibold text-slate-800">Tanggal Acara</div>
                       <div>{formatDateIndo(order.eventDate)}</div>
@@ -148,7 +148,7 @@ export default function TicketSuccessPage() {
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-slate-700 shrink-0 mt-0.5" />
                     <div>
                       <div className="font-semibold text-slate-800">Lokasi Venue</div>
                       <div className="line-clamp-2">{order.eventLocation}</div>
@@ -167,12 +167,12 @@ export default function TicketSuccessPage() {
 
                 <div>
                   <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Nomor Tiket</div>
-                  <div className="flex items-center gap-1.5 font-mono font-black text-brand-700 text-sm">
+                  <div className="flex items-center gap-1.5 font-mono font-bold text-slate-800 text-sm">
                     <span>{tix.ticketCode}</span>
                     <button
                       onClick={() => handleCopyCode(tix.ticketCode)}
                       title="Salin Kode Tiket"
-                      className="text-slate-400 hover:text-brand-600 transition print:hidden"
+                      className="text-slate-400 hover:text-slate-700 transition print:hidden"
                     >
                       <Copy className="w-3.5 h-3.5" />
                     </button>

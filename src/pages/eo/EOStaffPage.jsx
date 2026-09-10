@@ -88,7 +88,7 @@ export default function EOStaffPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
             Manajemen Staf Scanner Tiket (Verifikator)
           </h1>
           <p className="text-xs text-slate-500">
@@ -98,7 +98,7 @@ export default function EOStaffPage() {
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition w-fit"
+          className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition w-fit"
         >
           <UserPlus className="w-4 h-4" />
           <span>Tambah Akun Staf Baru</span>
@@ -106,11 +106,11 @@ export default function EOStaffPage() {
       </div>
 
       {/* Info Notice (PRD Flow 5.4) */}
-      <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-start gap-3 text-xs text-brand-900">
-        <QrCode className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-start gap-3 text-xs text-slate-900">
+        <QrCode className="w-5 h-5 text-slate-700 shrink-0 mt-0.5" />
         <div>
           <span className="font-bold text-slate-900">Alur Penugasan Staf Lapangan:</span>
-          <p className="text-brand-700 mt-0.5 leading-relaxed">
+          <p className="text-slate-800 mt-0.5 leading-relaxed">
             Staf lapangan yang Anda buat dapat langsung login di pintu gate menggunakan email dan password yang Anda tentukan. Mereka hanya dapat memvalidasi dan memindai tiket pada event yang Anda pilihkan.
           </p>
         </div>
@@ -134,7 +134,7 @@ export default function EOStaffPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 text-sm">{staff.name}</h3>
-                      <span className="bg-purple-50 text-purple-700 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-purple-200">
+                      <span className="bg-purple-50 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-purple-200">
                         STAF VERIFIKATOR
                       </span>
                     </div>
@@ -161,7 +161,7 @@ export default function EOStaffPage() {
                 {/* Assigned Events List */}
                 <div className="space-y-1.5 text-xs">
                   <div className="font-bold text-slate-700 flex items-center gap-1.5 text-[11px]">
-                    <Calendar className="w-3.5 h-3.5 text-brand-600" />
+                    <Calendar className="w-3.5 h-3.5 text-slate-700" />
                     <span>Event yang Ditugaskan ({assignedEvents.length}):</span>
                   </div>
                   {assignedEvents.length > 0 ? (
@@ -169,7 +169,7 @@ export default function EOStaffPage() {
                       {assignedEvents.map(ev => (
                         <span
                           key={ev.id}
-                          className="bg-brand-50 text-brand-700 text-[10px] font-semibold px-2 py-1 rounded-lg border border-brand-100 truncate max-w-[200px]"
+                          className="bg-slate-100 text-slate-700 text-[10px] font-semibold px-2 py-1 rounded-lg border border-slate-100 truncate max-w-[200px]"
                         >
                           {ev.title}
                         </span>
@@ -208,7 +208,7 @@ export default function EOStaffPage() {
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 border border-slate-200 shadow-2xl relative">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <UserPlus className="w-5 h-5 text-brand-600" />
+                <UserPlus className="w-5 h-5 text-slate-700" />
                 <h3 className="font-bold text-base text-slate-900">Tambah Akun Staf Lapangan</h3>
               </div>
               <button
@@ -230,7 +230,7 @@ export default function EOStaffPage() {
                   value={newStaff.name}
                   onChange={(e) => setNewStaff({ ...newStaff, name: e.target.value })}
                   placeholder="Contoh: Rian Verifikator"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
                 />
               </div>
 
@@ -245,7 +245,7 @@ export default function EOStaffPage() {
                     value={newStaff.email}
                     onChange={(e) => setNewStaff({ ...newStaff, email: e.target.value })}
                     placeholder="staf.gate1@gofest.id"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
                   />
                 </div>
 
@@ -258,7 +258,7 @@ export default function EOStaffPage() {
                     value={newStaff.phone}
                     onChange={(e) => setNewStaff({ ...newStaff, phone: e.target.value })}
                     placeholder="081234567890"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white"
                   />
                 </div>
               </div>
@@ -272,7 +272,7 @@ export default function EOStaffPage() {
                   required
                   value={newStaff.password}
                   onChange={(e) => setNewStaff({ ...newStaff, password: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-brand-500 focus:bg-white font-mono"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 focus:bg-white font-mono"
                 />
                 <span className="text-[10px] text-slate-400">Kredensial ini dapat diinformasikan secara manual ke staf.</span>
               </div>
@@ -290,7 +290,7 @@ export default function EOStaffPage() {
                         key={ev.id}
                         className={`flex items-center gap-2.5 p-2 rounded-xl border cursor-pointer transition ${
                           checked
-                            ? 'bg-brand-50 border-brand-400 text-brand-900 font-bold'
+                            ? 'bg-slate-50 border-slate-300 text-slate-900 font-bold'
                             : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                         }`}
                       >
@@ -298,7 +298,7 @@ export default function EOStaffPage() {
                           type="checkbox"
                           checked={checked}
                           onChange={() => handleToggleEvent(ev.id)}
-                          className="rounded text-brand-600 focus:ring-brand-500"
+                          className="rounded text-slate-700 focus:ring-slate-400"
                         />
                         <span className="truncate">{ev.title}</span>
                       </label>
@@ -310,7 +310,7 @@ export default function EOStaffPage() {
               <div className="pt-3 flex gap-3">
                 <button
                   type="submit"
-                  className="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2"
+                  className="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2"
                 >
                   <UserPlus className="w-4 h-4" />
                   <span>Simpan & Buat Akun Staf</span>

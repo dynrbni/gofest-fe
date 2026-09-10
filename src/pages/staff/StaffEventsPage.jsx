@@ -19,7 +19,7 @@ export default function StaffEventsPage() {
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <div>
-        <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
           Event yang Ditugaskan Kepada Anda
         </h1>
         <p className="text-xs text-slate-500">
@@ -40,14 +40,14 @@ export default function StaffEventsPage() {
                   alt={event.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 left-3 bg-brand-900/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs">
+                <div className="absolute top-3 left-3 bg-slate-900/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs">
                   {event.category}
                 </div>
               </div>
 
               <div className="p-5 space-y-3">
                 <div className="flex items-center gap-2 text-xs text-slate-500">
-                  <Building2 className="w-3.5 h-3.5 text-brand-600" />
+                  <Building2 className="w-3.5 h-3.5 text-slate-700" />
                   <span>Promotor: <strong className="text-slate-800">{event.eoName}</strong></span>
                 </div>
 
@@ -57,11 +57,11 @@ export default function StaffEventsPage() {
 
                 <div className="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border border-slate-100">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+                    <Calendar className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                     <span>{formatDateIndo(event.date)} {event.time ? `• ${event.time}` : ''}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+                    <MapPin className="w-3.5 h-3.5 text-slate-700 shrink-0" />
                     <span className="truncate">{event.location}</span>
                   </div>
                 </div>

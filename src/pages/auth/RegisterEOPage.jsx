@@ -52,14 +52,14 @@ export default function RegisterEOPage() {
     <div className="min-h-screen bg-slate-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-lg text-center space-y-2">
         <Link to="/" className="inline-flex items-center gap-2">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-orange flex items-center justify-center text-white shadow-lg">
+          <div className="w-10 h-10 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-lg">
             <Ticket className="w-6 h-6" />
           </div>
-          <span className="text-3xl font-black text-brand-950 tracking-tight">
-            GoFest<span className="text-accent-orange">.</span>
+          <span className="text-3xl font-bold text-slate-900 tracking-tight">
+            GoFest<span className="text-amber-500">.</span>
           </span>
         </Link>
-        <h1 className="text-2xl font-black text-slate-900">
+        <h1 className="text-2xl font-bold text-slate-900">
           Daftar Sebagai Event Organizer
         </h1>
         <p className="text-xs text-slate-500">
@@ -77,7 +77,7 @@ export default function RegisterEOPage() {
               </div>
 
               <div className="space-y-2">
-                <span className="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">
+                <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase">
                   Status: PENDING REVIEW
                 </span>
                 <h2 className="text-xl font-bold text-slate-900">
@@ -88,18 +88,18 @@ export default function RegisterEOPage() {
                 </p>
               </div>
 
-              <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 text-xs text-brand-900 space-y-3 text-left">
-                <div className="font-bold flex items-center gap-1.5 text-brand-800">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-900 space-y-3 text-left">
+                <div className="font-bold flex items-center gap-1.5 text-slate-800">
                   <Sparkles className="w-4 h-4 text-amber-500" />
                   Mode Pengujian / Demo Evaluasi:
                 </div>
-                <p className="text-[11px] text-brand-700">
+                <p className="text-[11px] text-slate-800">
                   Anda dapat langsung beralih ke akun <strong>Admin</strong> untuk menyetujui (approve) pendaftaran organisasi ini di menu Approval EO!
                 </p>
                 <button
                   type="button"
                   onClick={handleDemoAdminApproval}
-                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5"
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5"
                 >
                   <span>Buka Dashboard Admin untuk Approve</span>
                   <ArrowRight className="w-4 h-4" />
@@ -130,7 +130,7 @@ export default function RegisterEOPage() {
                       value={form.organization}
                       onChange={(e) => setForm({ ...form, organization: e.target.value })}
                       placeholder="PT Nada Kreasi Nusantara"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                     />
                     <Building2 className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                   </div>
@@ -147,7 +147,7 @@ export default function RegisterEOPage() {
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       placeholder="Dian Sastro"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                     />
                     <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                   </div>
@@ -166,7 +166,7 @@ export default function RegisterEOPage() {
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       placeholder="partner@organisasi.com"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                     />
                     <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                   </div>
@@ -183,7 +183,7 @@ export default function RegisterEOPage() {
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       placeholder="081234567890"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                     />
                     <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                   </div>
@@ -201,7 +201,7 @@ export default function RegisterEOPage() {
                     value={form.password}
                     onChange={(e) => setForm({ ...form, password: e.target.value })}
                     placeholder="Minimal 6 karakter"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                   />
                   <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                 </div>
@@ -216,14 +216,14 @@ export default function RegisterEOPage() {
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   placeholder="Ceritakan jenis event yang sering Anda selenggarakan (misal konser indie, festival kuliner, dsb)..."
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-500 focus:bg-white text-xs"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 focus:outline-none focus:border-slate-400 focus:bg-white text-xs"
                 ></textarea>
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-600/20 transition flex items-center justify-center gap-2"
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-slate-900/10 transition flex items-center justify-center gap-2"
                 >
                   <Building2 className="w-4 h-4" />
                   <span>Daftarkan Organisasi EO</span>
@@ -232,7 +232,7 @@ export default function RegisterEOPage() {
 
               <div className="text-center pt-2">
                 <span className="text-slate-500">Sudah memiliki akun promotor? </span>
-                <Link to="/login" className="font-bold text-brand-600 hover:underline">
+                <Link to="/login" className="font-bold text-slate-700 hover:underline">
                   Masuk disini
                 </Link>
               </div>
