@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Calendar, Ticket, DollarSign, Users, Plus, ArrowRight, 
-  Clock, CheckCircle2, AlertCircle, TrendingUp, Sparkles 
+  Clock, CheckCircle2, AlertCircle, TrendingUp, Sparkles, ShieldCheck 
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { StorageService } from '../../services/storage';
