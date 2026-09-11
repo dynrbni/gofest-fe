@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import CityLandmark from './CityLandmarks';
 
 export default function CityCard({ city }) {
   return (
@@ -15,13 +16,10 @@ export default function CityCard({ city }) {
         <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-brand-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 mt-3" />
       </div>
 
-      <div className="w-24 h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 shrink-0">
-        <img
-          src={city.image}
-          alt={city.imageAlt}
-          loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-500 ease-out"
-        />
+      <div className={`w-24 h-24 sm:h-28 rounded-lg overflow-hidden shrink-0 ${city.tileBg}`}>
+        <div className="w-full h-full group-hover:scale-110 group-hover:-translate-y-1 group-hover:-rotate-2 transition-transform duration-500 ease-out">
+          <CityLandmark type={city.landmark} />
+        </div>
       </div>
 
       <div
