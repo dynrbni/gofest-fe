@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Search, MapPin, ArrowUpDown } from 'lucide-react';
 import { StorageService } from '../../services/storage';
@@ -9,13 +9,22 @@ export default function ExplorePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
   const initialCategory = searchParams.get('category') || 'all';
+  const initialCity = searchParams.get('kota') || 'all';
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
-  const [selectedCity, setSelectedCity] = useState('all');
+  const [selectedCity, setSelectedCity] = useState(initialCity);
   const [sortBy, setSortBy] = useState('date-asc');
 
   const allEvents = useMemo(() => StorageService.getPublishedEvents(), []);
+
+  // URL params are the source of truth, so navigation from other pages
+  // (navbar search, city cards) always lands in the right state
+  useEffect(() => {
+    setSearchQuery(searchParams.get('q') || '');
+    setSelectedCategory(searchParams.get('category') || 'all');
+    setSelectedCity(searchParams.get('kota') || 'all');
+  }, [searchParams]);
 
   const filteredEvents = useMemo(() => {
     let result = [...allEvents];
@@ -56,14 +65,26 @@ export default function ExplorePage() {
 
   const cities = ['Semua Kota', 'Jakarta', 'Yogyakarta', 'Tangerang', 'Surabaya'];
 
+  const syncParams = (updates) => {
+    const next = new URLSearchParams(searchParams);
+    Object.entries(updates).forEach(([key, value]) => {
+      if (value === null || value === '' || value === 'all') {
+        next.delete(key);
+      } else {
+        next.set(key, value);
+      }
+    });
+    setSearchParams(next);
+  };
+
   const handleCategorySelect = (catId) => {
     setSelectedCategory(catId);
-    if (catId === 'all') {
-      searchParams.delete('category');
-    } else {
-      searchParams.set('category', catId);
-    }
-    setSearchParams(searchParams);
+    syncParams({ category: catId, q: searchQuery.trim() });
+  };
+
+  const handleCitySelect = (cityId) => {
+    setSelectedCity(cityId);
+    syncParams({ kota: cityId, q: searchQuery.trim() });
   };
 
   return (
@@ -93,7 +114,7 @@ export default function ExplorePage() {
             />
             {searchQuery && (
               <button
-                onClick={() => setSearchQuery('')}
+                onClick={() => syncParams({ q: null })}
                 className="absolute right-3 top-3 text-xs text-slate-400 hover:text-slate-600 bg-slate-200 hover:bg-slate-300 rounded-full w-5 h-5 flex items-center justify-center"
               >
                 ✕
@@ -135,7 +156,7 @@ export default function ExplorePage() {
             return (
               <button
                 key={c}
-                onClick={() => setSelectedCity(val)}
+                onClick={() => handleCitySelect(val)}
                 className={`px-3 py-1.5 rounded-lg font-medium transition text-sm ${
                   active
                     ? 'bg-slate-900 text-white'
@@ -161,9 +182,7 @@ export default function ExplorePage() {
               setSearchQuery('');
               setSelectedCategory('all');
               setSelectedCity('all');
-              searchParams.delete('category');
-              searchParams.delete('q');
-              setSearchParams(searchParams);
+              syncParams({ q: null, category: null, kota: null });
             }}
             className="text-slate-500 hover:text-slate-900 font-medium transition"
           >

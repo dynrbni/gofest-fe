@@ -8,6 +8,38 @@ import { StorageService } from '../../services/storage';
 import HeroBanner from '../../components/buyer/HeroBanner';
 import EventCard from '../../components/buyer/EventCard';
 import CategoryFilter from '../../components/buyer/CategoryFilter';
+import CityCard from '../../components/buyer/CityCard';
+
+const EXPLORE_CITIES = [
+  {
+    name: 'DKI Jakarta',
+    filter: 'Jakarta',
+    image: 'https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=400&q=80',
+    imageAlt: 'Bundaran HI, Jakarta',
+    gradient: 'from-orange-400 to-rose-500',
+  },
+  {
+    name: 'Kota Tangerang',
+    filter: 'Tangerang',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80',
+    imageAlt: 'Panggung konser di Tangerang',
+    gradient: 'from-sky-400 to-blue-600',
+  },
+  {
+    name: 'Yogyakarta',
+    filter: 'Yogyakarta',
+    image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=400&q=80',
+    imageAlt: 'Kerumunan festival di Yogyakarta',
+    gradient: 'from-violet-400 to-purple-600',
+  },
+  {
+    name: 'Kota Surabaya',
+    filter: 'Surabaya',
+    image: 'https://images.unsplash.com/photo-1589041127168-9b1915731dc3?auto=format&fit=crop&w=400&q=80',
+    imageAlt: 'Jembatan Suramadu, Surabaya',
+    gradient: 'from-emerald-400 to-teal-600',
+  },
+];
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -75,6 +107,37 @@ export default function HomePage() {
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        {/* Jelajahi Event di Kotamu */}
+        <section className="space-y-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 border border-brand-100 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </span>
+                Jelajahi Event di Kotamu
+              </h2>
+              <p className="text-sm text-slate-500 mt-1.5">
+                Pilih kotamu dan temukan event yang sedang berlangsung di sana.
+              </p>
+            </div>
+
+            <Link
+              to="/jelajah"
+              className="text-sm font-medium text-slate-500 hover:text-slate-900 flex items-center gap-1 transition shrink-0"
+            >
+              <span>Lihat Semua</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {EXPLORE_CITIES.map((city) => (
+              <CityCard key={city.filter} city={city} />
+            ))}
           </div>
         </section>
 
