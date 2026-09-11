@@ -8,6 +8,7 @@ import { StorageService } from '../../services/storage';
 import HeroBanner from '../../components/buyer/HeroBanner';
 import EventCard from '../../components/buyer/EventCard';
 import CategoryFilter from '../../components/buyer/CategoryFilter';
+import CityFilter from '../../components/buyer/CityFilter';
 import CityCard from '../../components/buyer/CityCard';
 
 const EXPLORE_CITIES = [
@@ -68,46 +69,25 @@ export default function HomePage() {
     return publishedEvents.filter(e => e.trending);
   }, [publishedEvents]);
 
-  const cities = ['Semua Kota', 'Jakarta', 'Yogyakarta', 'Tangerang', 'Surabaya'];
-
   return (
     <div className="pb-16">
       {/* Hero Banner */}
       <HeroBanner featuredEvents={featuredEvents} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-        {/* Category & City Filter */}
-        <section className="bg-white p-5 rounded-xl border border-slate-200 space-y-4 -mt-6 relative z-20">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <CategoryFilter
-              selectedCategory={selectedCategory}
-              onSelectCategory={setSelectedCategory}
-            />
+        {/* Filter Kategori & Kota */}
+        <section className="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5 sm:p-6 -mt-6 relative z-20">
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
 
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0 text-sm">
-              <span className="text-slate-400 font-medium flex items-center gap-1 pl-1">
-                <MapPin className="w-3.5 h-3.5" />
-                Kota:
-              </span>
-              {cities.map(c => {
-                const val = c === 'Semua Kota' ? 'all' : c;
-                const active = selectedCity === val;
-                return (
-                  <button
-                    key={c}
-                    onClick={() => setSelectedCity(val)}
-                    className={`px-3 py-1.5 rounded-lg font-medium transition text-sm ${
-                      active
-                        ? 'bg-slate-900 text-white'
-                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700'
-                    }`}
-                  >
-                    {c}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          <div className="border-t border-dashed border-slate-200 my-4 sm:my-5"></div>
+
+          <CityFilter
+            selectedCity={selectedCity}
+            onSelectCity={setSelectedCity}
+          />
         </section>
 
         {/* Jelajahi Event di Kotamu */}

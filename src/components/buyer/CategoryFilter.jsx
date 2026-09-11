@@ -13,8 +13,12 @@ const CATEGORIES = [
 
 export default function CategoryFilter({ selectedCategory, onSelectCategory }) {
   return (
-    <div className="w-full overflow-x-auto no-scrollbar">
-      <div className="flex items-center gap-2 min-w-max">
+    <div className="flex items-center gap-3 min-w-0">
+      <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 shrink-0">
+        <Layers className="w-3.5 h-3.5" />
+        Kategori
+      </span>
+      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar min-w-0">
         {CATEGORIES.map((cat) => {
           const Icon = cat.icon;
           const isSelected = selectedCategory === cat.id;
@@ -23,10 +27,10 @@ export default function CategoryFilter({ selectedCategory, onSelectCategory }) {
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition ${
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-medium border transition-all duration-200 shrink-0 ${
                 isSelected
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-100 text-slate-500 hover:text-slate-800 hover:bg-slate-200'
+                  ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
+                  : 'bg-white text-slate-500 border-slate-200 hover:text-slate-900 hover:border-slate-300 hover:-translate-y-px'
               }`}
             >
               <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-slate-400'}`} />

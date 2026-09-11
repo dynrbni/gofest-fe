@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, MapPin, ArrowUpDown } from 'lucide-react';
+import { Search, ArrowUpDown } from 'lucide-react';
 import { StorageService } from '../../services/storage';
 import EventCard from '../../components/buyer/EventCard';
 import CategoryFilter from '../../components/buyer/CategoryFilter';
+import CityFilter from '../../components/buyer/CityFilter';
 
 export default function ExplorePage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -62,8 +63,6 @@ export default function ExplorePage() {
 
     return result;
   }, [allEvents, searchQuery, selectedCategory, selectedCity, sortBy]);
-
-  const cities = ['Semua Kota', 'Jakarta', 'Yogyakarta', 'Tangerang', 'Surabaya'];
 
   const syncParams = (updates) => {
     const next = new URLSearchParams(searchParams);
@@ -145,28 +144,11 @@ export default function ExplorePage() {
         </div>
 
         {/* City Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-sm">
-          <span className="text-slate-400 font-medium flex items-center gap-1 mr-1">
-            <MapPin className="w-3.5 h-3.5" />
-            Lokasi:
-          </span>
-          {cities.map(c => {
-            const val = c === 'Semua Kota' ? 'all' : c;
-            const active = selectedCity === val;
-            return (
-              <button
-                key={c}
-                onClick={() => handleCitySelect(val)}
-                className={`px-3 py-1.5 rounded-lg font-medium transition text-sm ${
-                  active
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700'
-                }`}
-              >
-                {c}
-              </button>
-            );
-          })}
+        <div className="border-t border-slate-100 pt-3">
+          <CityFilter
+            selectedCity={selectedCity}
+            onSelectCity={handleCitySelect}
+          />
         </div>
       </div>
 
