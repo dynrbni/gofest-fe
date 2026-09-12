@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { 
-  Ticket, Search, User, LogOut, LayoutDashboard, ChevronDown, 
-  Menu, X, Shield, Building2, QrCode, RefreshCw 
+import {
+  Ticket, Search, User, LogOut, LayoutDashboard, ChevronDown,
+  Menu, X, Shield, Building2, QrCode, RefreshCw, Layers
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { StorageService } from '../../services/storage';
+import { CATEGORIES } from '../../constants/categories';
 
 export default function Navbar() {
   const { currentUser, logout, quickSwitch, isAdmin, isEO, isStaff } = useAuth();
@@ -15,8 +16,45 @@ export default function Navbar() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [switcherOpen, setSwitcherOpen] = useState(false);
+  const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
+  const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
+
+  // Close all menus whenever the route changes
+  useEffect(() => {
+    setCategoryMenuOpen(false);
+    setUserDropdownOpen(false);
+    setSwitcherOpen(false);
+    setMobileMenuOpen(false);
+    setMobileCategoryOpen(false);
+  }, [location.pathname]);
+
+  // Close menus on outside click and Escape
+  useEffect(() => {
+    const handleDocClick = (e) => {
+      if (!e.target.closest('[data-menu]')) {
+        setCategoryMenuOpen(false);
+        setUserDropdownOpen(false);
+        setSwitcherOpen(false);
+      }
+    };
+    const handleKeydown = (e) => {
+      if (e.key === 'Escape') {
+        setCategoryMenuOpen(false);
+        setUserDropdownOpen(false);
+        setSwitcherOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener('click', handleDocClick);
+    document.addEventListener('keydown', handleKeydown);
+    return () => {
+      document.removeEventListener('click', handleDocClick);
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -53,10 +91,15 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Beranda', path: '/' },
     { name: 'Jelajah Event', path: '/jelajah' },
-    { name: 'Penyelenggara', path: '/penyelenggara' },
     { name: 'Tentang', path: '/tentang' },
     { name: 'Kontak', path: '/kontak' },
   ];
+
+  const closeAllMenus = () => {
+    setCategoryMenuOpen(false);
+    setUserDropdownOpen(false);
+    setSwitcherOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full">
@@ -74,7 +117,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="relative">
+            <div className="relative" data-menu>
               <button
                 onClick={() => setSwitcherOpen(!switcherOpen)}
                 className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-2.5 py-1 rounded text-[11px] transition border border-slate-700"
@@ -123,7 +166,7 @@ export default function Navbar() {
       </div>
 
       {/* Main White Navigation Bar */}
-      <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3">
+      <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3 relative">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group shrink-0">
@@ -137,7 +180,79 @@ export default function Navbar() {
 
           {/* Center Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
+            {navLinks.slice(0, 2).map((link) => {
+              const active = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                    active
+                      ? 'text-slate-900 bg-slate-100 font-semibold'
+                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+
+            {/* Kategori Dropdown */}
+            <div className="relative" data-menu>
+              <button
+                type="button"
+                onClick={() => setCategoryMenuOpen(!categoryMenuOpen)}
+                aria-expanded={categoryMenuOpen}
+                aria-haspopup="true"
+                className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  categoryMenuOpen
+                    ? 'text-slate-900 bg-slate-100 font-semibold'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                <span>Kategori</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                    categoryMenuOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {categoryMenuOpen && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2.5 w-[21rem] bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50">
+                  <div className="grid grid-cols-2 gap-1">
+                    <Link
+                      to="/jelajah"
+                      onClick={closeAllMenus}
+                      className="group flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition"
+                    >
+                      <span className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
+                        <Layers className="w-4 h-4" />
+                      </span>
+                      <span className="text-sm font-semibold text-slate-900">Semua Kategori</span>
+                    </Link>
+
+                    {CATEGORIES.map((cat) => (
+                      <Link
+                        key={cat.id}
+                        to={`/jelajah?category=${cat.id}`}
+                        onClick={closeAllMenus}
+                        className="group flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition"
+                      >
+                        <span className="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 group-hover:bg-slate-900 group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                          <cat.icon className="w-4 h-4" />
+                        </span>
+                        <span className="text-sm font-medium text-slate-600 group-hover:text-slate-900">
+                          {cat.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {navLinks.slice(2).map((link) => {
               const active = location.pathname === link.path;
               return (
                 <Link
@@ -155,29 +270,53 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Search Bar */}
-          <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-xs relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari event, artis, kota..."
-              className="w-full bg-slate-50 text-slate-900 placeholder-slate-400 text-sm pl-9 pr-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-slate-400 focus:bg-white transition"
-            />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
-          </form>
-
           {/* Right Actions */}
-          <div className="flex items-center gap-2">
-            <Link
-              to="/eo/register"
-              className="hidden sm:inline-flex text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-2 rounded-lg hover:bg-slate-50 transition"
-            >
-              Jadi Penyelenggara
-            </Link>
+          <div className="flex items-center gap-1.5">
+            {/* Expanding Search */}
+            <div className="hidden md:block">
+              {searchOpen ? (
+                <form onSubmit={handleSearchSubmit} className="flex items-center">
+                  <div className="relative">
+                    <input
+                      autoFocus
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Cari event, artis, kota..."
+                      className="w-44 lg:w-56 bg-slate-50 text-slate-900 placeholder-slate-400 text-sm pl-3 pr-8 py-2 rounded-l-lg border border-slate-200 border-r-0 focus:outline-none focus:border-slate-400 focus:bg-white transition"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
+                      aria-label="Tutup pencarian"
+                      className="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <button
+                    type="submit"
+                    aria-label="Cari"
+                    className="bg-slate-900 hover:bg-slate-800 text-white px-3 py-2 rounded-r-lg transition"
+                  >
+                    <Search className="w-4 h-4" />
+                  </button>
+                </form>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setSearchOpen(true)}
+                  aria-label="Buka pencarian"
+                  className="w-9 h-9 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-center"
+                >
+                  <Search className="w-5 h-5" />
+                </button>
+              )}
+            </div>
 
+            {/* User Menu / Login */}
             {currentUser ? (
-              <div className="relative">
+              <div className="relative" data-menu>
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                   className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-sm font-medium transition"
@@ -251,16 +390,25 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium px-4 py-2 rounded-lg transition flex items-center gap-1.5"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-2 rounded-lg hover:bg-slate-100 transition hidden sm:inline-flex"
               >
-                <User className="w-3.5 h-3.5" />
-                <span>Masuk</span>
+                Masuk
               </Link>
             )}
+
+            {/* Primary CTA */}
+            <Link
+              to="/eo/register"
+              className="hidden sm:inline-flex bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2 rounded-lg transition"
+            >
+              Jadi Penyelenggara
+            </Link>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Tutup menu' : 'Buka menu'}
+              aria-expanded={mobileMenuOpen}
               className="lg:hidden text-slate-600 hover:text-slate-900 p-1.5 hover:bg-slate-100 rounded-lg transition"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -282,7 +430,7 @@ export default function Navbar() {
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
             </form>
 
-            {navLinks.map((link) => (
+            {navLinks.slice(0, 2).map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
@@ -292,13 +440,75 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/eo/register"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition"
-            >
-              Daftar Sebagai Penyelenggara
-            </Link>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => setMobileCategoryOpen(!mobileCategoryOpen)}
+                aria-expanded={mobileCategoryOpen}
+                className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
+              >
+                <span>Kategori</span>
+                <ChevronDown
+                  className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                    mobileCategoryOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              {mobileCategoryOpen && (
+                <div className="grid grid-cols-2 gap-1 pl-2 pt-1">
+                  <Link
+                    to="/jelajah"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-semibold text-slate-800 hover:bg-slate-50 transition"
+                  >
+                    <Layers className="w-3.5 h-3.5 text-slate-900" />
+                    <span>Semua</span>
+                  </Link>
+                  {CATEGORIES.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      to={`/jelajah?category=${cat.id}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 transition"
+                    >
+                      <cat.icon className="w-3.5 h-3.5 text-slate-400" />
+                      <span>{cat.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {navLinks.slice(2).map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition"
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            <div className="pt-2 space-y-1">
+              <Link
+                to="/eo/register"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-center bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition"
+              >
+                Jadi Penyelenggara
+              </Link>
+              {!currentUser && (
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-center border border-slate-200 hover:border-slate-300 text-slate-700 font-semibold text-sm px-4 py-2.5 rounded-lg transition"
+                >
+                  Masuk
+                </Link>
+              )}
+            </div>
           </div>
         )}
       </div>

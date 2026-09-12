@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Ticket, ShieldCheck, CreditCard, Zap, Mail, Phone, MapPin, Globe } from 'lucide-react';
+import { CATEGORIES } from '../../constants/categories';
 
 export default function Footer() {
   return (
@@ -65,11 +66,13 @@ export default function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-slate-900 mb-4">Kategori Event</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><Link to="/jelajah?category=Musik" className="text-slate-500 hover:text-slate-900 transition">Konser Musik & Live Gig</Link></li>
-            <li><Link to="/jelajah?category=Festival" className="text-slate-500 hover:text-slate-900 transition">Festival & Karnaval</Link></li>
-            <li><Link to="/jelajah?category=Fanmeeting" className="text-slate-500 hover:text-slate-900 transition">Fanmeeting K-Pop & Aktor</Link></li>
-            <li><Link to="/jelajah?category=Seminar" className="text-slate-500 hover:text-slate-900 transition">Konferensi & Seminar</Link></li>
-            <li><Link to="/jelajah?category=Pameran" className="text-slate-500 hover:text-slate-900 transition">Pameran Seni & Kreatif</Link></li>
+            {CATEGORIES.slice(0, 5).map((cat) => (
+              <li key={cat.id}>
+                <Link to={`/jelajah?category=${cat.id}`} className="text-slate-500 hover:text-slate-900 transition">
+                  {cat.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

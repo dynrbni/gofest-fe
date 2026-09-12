@@ -1,15 +1,8 @@
 import React from 'react';
-import { Music, Sparkles, Tent, Heart, Mic2, Palette, Layers } from 'lucide-react';
+import { Layers } from 'lucide-react';
+import { CATEGORIES } from '../../constants/categories';
 
-const CATEGORIES = [
-  { id: 'all', label: 'Semua', icon: Layers },
-  { id: 'Musik', label: 'Musik', icon: Music },
-  { id: 'Konser', label: 'Konser', icon: Mic2 },
-  { id: 'Festival', label: 'Festival', icon: Tent },
-  { id: 'Fanmeeting', label: 'Fanmeeting', icon: Heart },
-  { id: 'Seminar', label: 'Seminar', icon: Sparkles },
-  { id: 'Pameran', label: 'Pameran', icon: Palette },
-];
+const ALL_CATEGORIES = [{ id: 'all', label: 'Semua', icon: Layers }, ...CATEGORIES];
 
 export default function CategoryFilter({ selectedCategory, onSelectCategory }) {
   return (
@@ -19,7 +12,7 @@ export default function CategoryFilter({ selectedCategory, onSelectCategory }) {
         Kategori
       </span>
       <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar min-w-0">
-        {CATEGORIES.map((cat) => {
+        {ALL_CATEGORIES.map((cat) => {
           const Icon = cat.icon;
           const isSelected = selectedCategory === cat.id;
 

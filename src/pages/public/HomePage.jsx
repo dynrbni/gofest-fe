@@ -7,7 +7,6 @@ import {
 import { StorageService } from '../../services/storage';
 import HeroBanner from '../../components/buyer/HeroBanner';
 import EventCard from '../../components/buyer/EventCard';
-import CategoryFilter from '../../components/buyer/CategoryFilter';
 import CityFilter from '../../components/buyer/CityFilter';
 import CityCard from '../../components/buyer/CityCard';
 import DecorativeQR from '../../components/common/DecorativeQR';
@@ -44,7 +43,6 @@ const EXPLORE_CITIES = [
 ];
 
 export default function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedCity, setSelectedCity] = useState('all');
 
   const publishedEvents = useMemo(() => {
@@ -57,14 +55,11 @@ export default function HomePage() {
 
   const recommendedEvents = useMemo(() => {
     let filtered = publishedEvents;
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(e => e.category?.toLowerCase() === selectedCategory.toLowerCase());
-    }
     if (selectedCity !== 'all') {
       filtered = filtered.filter(e => e.city?.toLowerCase().includes(selectedCity.toLowerCase()));
     }
     return filtered;
-  }, [publishedEvents, selectedCategory, selectedCity]);
+  }, [publishedEvents, selectedCity]);
 
   const trendingEvents = useMemo(() => {
     return publishedEvents.filter(e => e.trending);
@@ -76,19 +71,20 @@ export default function HomePage() {
       <HeroBanner featuredEvents={featuredEvents} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-        {/* Filter Kategori & Kota */}
-        <section className="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5 sm:p-6 -mt-6 relative z-20">
-          <CategoryFilter
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-          />
-
-          <div className="border-t border-dashed border-slate-200 my-4 sm:my-5"></div>
-
+        {/* Filter row */}
+        <section className="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5 sm:p-6 -mt-6 relative z-20 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <CityFilter
             selectedCity={selectedCity}
             onSelectCity={setSelectedCity}
           />
+
+          <Link
+            to="/jelajah"
+            className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition shrink-0"
+          >
+            <span>Semua Event</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </section>
 
         {/* Jelajahi Event di Kotamu */}
@@ -153,9 +149,9 @@ export default function HomePage() {
             <div className="bg-slate-50 rounded-xl p-12 text-center border border-slate-200">
               <Calendar className="w-10 h-10 text-slate-300 mx-auto mb-3" />
               <div className="text-slate-800 font-semibold text-base">Tidak ada event yang sesuai filter</div>
-              <p className="text-slate-500 text-sm mt-1">Coba pilih kategori atau kota lain.</p>
+              <p className="text-slate-500 text-sm mt-1">Coba pilih kota lain.</p>
               <button
-                onClick={() => { setSelectedCategory('all'); setSelectedCity('all'); }}
+                onClick={() => setSelectedCity('all')}
                 className="mt-4 bg-slate-900 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-slate-800 transition"
               >
                 Reset Filter
