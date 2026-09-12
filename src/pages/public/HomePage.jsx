@@ -1,13 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Flame, TrendingUp, Calendar, ArrowRight, 
+  Calendar, ArrowRight, 
   MapPin, QrCode, ShieldCheck, Zap 
 } from 'lucide-react';
 import { StorageService } from '../../services/storage';
 import HeroBanner from '../../components/buyer/HeroBanner';
 import EventCard from '../../components/buyer/EventCard';
-import CityFilter from '../../components/buyer/CityFilter';
 import CityCard from '../../components/buyer/CityCard';
 import DecorativeQR from '../../components/common/DecorativeQR';
 
@@ -43,8 +42,6 @@ const EXPLORE_CITIES = [
 ];
 
 export default function HomePage() {
-  const [selectedCity, setSelectedCity] = useState('all');
-
   const publishedEvents = useMemo(() => {
     return StorageService.getPublishedEvents();
   }, []);
@@ -54,12 +51,8 @@ export default function HomePage() {
   }, [publishedEvents]);
 
   const recommendedEvents = useMemo(() => {
-    let filtered = publishedEvents;
-    if (selectedCity !== 'all') {
-      filtered = filtered.filter(e => e.city?.toLowerCase().includes(selectedCity.toLowerCase()));
-    }
-    return filtered;
-  }, [publishedEvents, selectedCity]);
+    return publishedEvents;
+  }, [publishedEvents]);
 
   const trendingEvents = useMemo(() => {
     return publishedEvents.filter(e => e.trending);
@@ -71,22 +64,6 @@ export default function HomePage() {
       <HeroBanner featuredEvents={featuredEvents} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-        {/* Filter row */}
-        <section className="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5 sm:p-6 -mt-6 relative z-20 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <CityFilter
-            selectedCity={selectedCity}
-            onSelectCity={setSelectedCity}
-          />
-
-          <Link
-            to="/jelajah"
-            className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition shrink-0"
-          >
-            <span>Semua Event</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </section>
-
         {/* Jelajahi Event di Kotamu */}
         <section className="space-y-5">
           <div className="flex items-center justify-between">
@@ -139,25 +116,11 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {recommendedEvents.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {recommendedEvents.slice(0, 8).map(event => (
-                <EventCard key={event.id} event={event} />
-              ))}
-            </div>
-          ) : (
-            <div className="bg-slate-50 rounded-xl p-12 text-center border border-slate-200">
-              <Calendar className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-              <div className="text-slate-800 font-semibold text-base">Tidak ada event yang sesuai filter</div>
-              <p className="text-slate-500 text-sm mt-1">Coba pilih kota lain.</p>
-              <button
-                onClick={() => setSelectedCity('all')}
-                className="mt-4 bg-slate-900 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-slate-800 transition"
-              >
-                Reset Filter
-              </button>
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {recommendedEvents.slice(0, 8).map(event => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
         </section>
 
         {/* Kenapa Beli di GoFest */}
