@@ -76,6 +76,14 @@
   50% { transform: translateY(-4px); }
 }
 
+/* Scan line sweep for decorative QR */
+@keyframes scan-sweep {
+  0% { top: 2%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 98%; opacity: 0; }
+}
+
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }

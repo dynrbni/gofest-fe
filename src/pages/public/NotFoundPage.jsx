@@ -1,18 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Compass } from 'lucide-react';
-
-const QR_PATTERN = [
-  [1, 1, 1, 0, 1, 0, 1, 1, 1],
-  [1, 0, 1, 0, 0, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 0, 1, 1, 1],
-  [0, 1, 0, 1, 1, 1, 0, 1, 0],
-  [1, 0, 1, 1, 0, 1, 1, 0, 1],
-  [0, 1, 0, 1, 1, 1, 0, 1, 0],
-  [1, 1, 1, 0, 1, 0, 1, 1, 1],
-  [1, 0, 1, 0, 0, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 0, 1, 0, 1],
-];
+import DecorativeQR from '../../components/common/DecorativeQR';
 
 export default function NotFoundPage() {
   return (
@@ -50,22 +39,8 @@ export default function NotFoundPage() {
 
         {/* Right: Failed Scan */}
         <div className="sm:col-span-4 bg-slate-50 border-t sm:border-t-0 sm:border-l-2 sm:border-dashed sm:border-slate-300 p-8 flex flex-col items-center justify-center gap-4">
-          <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-card">
-            <div
-              className="grid gap-[2px]"
-              style={{ gridTemplateColumns: 'repeat(9, 6px)' }}
-              role="img"
-              aria-label="Ilustrasi QR code gagal dipindai"
-            >
-              {QR_PATTERN.flatMap((row, r) =>
-                row.map((cell, c) => (
-                  <div
-                    key={`${r}-${c}`}
-                    className={`w-[6px] h-[6px] rounded-[1px] ${cell ? 'bg-slate-900' : 'bg-transparent'}`}
-                  />
-                ))
-              )}
-            </div>
+          <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-card" role="img" aria-label="Ilustrasi QR code gagal dipindai">
+            <DecorativeQR cell={6} />
           </div>
           <div className="text-center space-y-1">
             <div className="font-mono text-[11px] font-bold tracking-[0.2em] text-slate-700">

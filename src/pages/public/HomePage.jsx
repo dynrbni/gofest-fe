@@ -10,6 +10,7 @@ import EventCard from '../../components/buyer/EventCard';
 import CategoryFilter from '../../components/buyer/CategoryFilter';
 import CityFilter from '../../components/buyer/CityFilter';
 import CityCard from '../../components/buyer/CityCard';
+import DecorativeQR from '../../components/common/DecorativeQR';
 
 const EXPLORE_CITIES = [
   {
@@ -164,24 +165,81 @@ export default function HomePage() {
         </section>
 
         {/* Kenapa Beli di GoFest */}
-        <section className="bg-slate-50 rounded-2xl p-8 md:p-10 border border-slate-200">
-          <h3 className="text-lg font-bold text-slate-900 mb-6">Kenapa beli tiket di GoFest?</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Zap, title: 'Guest Checkout Instan', desc: 'Tidak perlu daftar akun. Cukup email & WhatsApp, e-ticket langsung terbit.' },
-              { icon: QrCode, title: 'E-Ticket QR Code', desc: 'Setiap tiket memiliki QR code unik anti-duplikasi yang langsung bisa divalidasi.' },
-              { icon: ShieldCheck, title: 'Garansi Tiket Resmi', desc: 'Seluruh Event Organizer telah melewati verifikasi identitas oleh tim GoFest.' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 shrink-0">
-                  <item.icon className="w-5 h-5" />
+        <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div className="lg:col-span-7 space-y-8">
+            <div className="space-y-2.5">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+                Kenapa beli tiket di GoFest
+              </span>
+              <h3 className="text-2xl md:text-3xl font-bold leading-snug">
+                Tiketnya asli. Masuknya mulus.
+              </h3>
+              <p className="text-sm text-slate-400 max-w-md leading-relaxed">
+                Dari checkout sampai gerbang venue — semua cepat, tercatat, dan bisa diverifikasi.
+              </p>
+            </div>
+
+            <ul className="divide-y divide-white/10">
+              {[
+                { icon: Zap, title: 'Checkout tanpa akun', desc: 'Isi nama, email, dan WhatsApp. E-ticket terbit begitu pembayaran terkonfirmasi.' },
+                { icon: QrCode, title: 'Satu QR, satu kali masuk', desc: 'Tiap tiket punya kode QR unik yang dipindai staf di gate. Duplikat otomatis ditolak.' },
+                { icon: ShieldCheck, title: 'EO lolos kurasi admin', desc: 'Penyelenggara diverifikasi tim GoFest lebih dulu sebelum boleh menjual tiket.' },
+              ].map((item) => (
+                <li key={item.title} className="flex items-start gap-4 py-4 first:pt-0 last:pb-0">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-sm">{item.title}</h4>
+                    <p className="text-sm text-slate-400 leading-relaxed mt-0.5">{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <Link
+              to="/cek-pesanan?nomor=GF-2026-88912"
+              className="group/ticket relative w-full max-w-xs -rotate-2 hover:rotate-0 hover:-translate-y-2 transition-all duration-500 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            >
+              <div className="bg-white text-slate-900 rounded-2xl shadow-2xl overflow-hidden grid grid-cols-12">
+                <div className="col-span-8 p-4 space-y-2.5">
+                  <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    BELUM DIGUNAKAN
+                  </span>
+                  <h4 className="font-bold text-sm leading-snug line-clamp-2">
+                    Remember Fest 2026: The Nostalgic Sound
+                  </h4>
+                  <div className="text-[11px] text-slate-500 space-y-1">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3 h-3 text-slate-400 shrink-0" />
+                      <span>7 Nov 2026</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                      <span>Gambir Expo, Jakarta</span>
+                    </div>
+                  </div>
+                  <div className="pt-2.5 border-t border-slate-100">
+                    <div className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">Nomor Tiket</div>
+                    <div className="font-mono text-xs font-bold">GF-TIX-1001A</div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-sm text-slate-900 mb-1">{item.title}</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+
+                <div className="col-span-4 relative bg-slate-50 border-l-2 border-dashed border-slate-300 p-4 flex flex-col items-center justify-center gap-2.5">
+                  <div className="relative">
+                    <DecorativeQR cell={5} />
+                    <div className="absolute left-0 right-0 h-[3px] bg-brand-500 rounded-full opacity-0 group-hover/ticket:animate-[scan-sweep_1.6s_ease-in-out_infinite]"></div>
+                  </div>
+                  <div className="text-[9px] font-semibold text-slate-400 flex items-center gap-1">
+                    <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                    Verified by GoFest
+                  </div>
                 </div>
               </div>
-            ))}
+            </Link>
           </div>
         </section>
 
